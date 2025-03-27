@@ -1,8 +1,5 @@
 <?php
 
-// Redireciona para a página portfolio
-header('Location: /portfolio');
-exit;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
