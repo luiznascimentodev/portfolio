@@ -16,22 +16,22 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/portfolio/resources/assets/favicon/apple-touch-icon.png"
+      href="{{ asset('resources/assets/favicon/apple-touch-icon.png') }}"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/portfolio/resources/assets/favicon/favicon-32x32.png"
+      href="{{ asset('resources/assets/favicon/favicon-32x32.png') }}"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/portfolio/resources/assets/favicon/favicon-16x16.png"
+      href="{{ asset('resources/assets/favicon/favicon-16x16.png') }}"
     />
-    <link rel="manifest" href="/portfolio/resources/assets/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="/portfolio/resources/css/style.css" />
+    <link rel="manifest" href="{{ asset('resources/assets/favicon/site.webmanifest') }}" />
+    <link rel="stylesheet" href="{{ asset('resources/css/style.css') }}" />
     <meta
       property="og:title"
       content="Luiz Nascimento - Desenvolvedor Fullstack"
@@ -68,7 +68,7 @@
       <nav class="navbar">
         <div class="logo">
           <img
-            src="/portfolio/resources/assets/favicon/favicon-32x32.png"
+            src="{{ asset('resources/assets/favicon/favicon-32x32.png') }}"
             alt="Logo Luiz Nascimento"
           />
           <span>Olá! Seja Bem Vindo (a)</span>
@@ -89,7 +89,7 @@
     <main>
       <section id="inicio">
         <img
-          src="/portfolio/resources/assets/avatar-img.jpg"
+          src="{{ asset('resources/assets/avatar-img.jpg') }}"
           id="avatarimg"
           alt="Imagem Avatar de Luiz Nascimento"
         />
@@ -187,7 +187,7 @@
        <h2>LINGUAGENS E TECNOLOGIAS</h2>
       <section id="tecnologias" class="espaço">
         <div class="tecnologia">
-          <img src="/portfolio/resources/assets/tecnologias/html.png" alt="HTML" />
+          <img src="{{ asset('resources/assets/tecnologias/html.png') }}" alt="HTML" />
           <p>HTML</p>
           <p>
             Estrutura o conteúdo das páginas web. Usei para criar a base de
@@ -195,7 +195,7 @@
           </p>
         </div>
         <div class="tecnologia">
-          <img src="/portfolio/resources/assets/tecnologias/css.png" alt="CSS" />
+          <img src="{{ asset('resources/assets/tecnologias/css.png') }}" alt="CSS" />
           <p>CSS</p>
           <p>
             Estiliza e define o layout das páginas. Criei designs responsivos e
@@ -203,7 +203,7 @@
           </p>
         </div>
         <div class="tecnologia">
-          <img src="/portfolio/resources/assets/tecnologias/javascript.png" alt="JavaScript" />
+          <img src="{{ asset('resources/assets/tecnologias/javascript.png') }}" alt="JavaScript" />
           <p>JavaScript</p>
           <p>
             Adiciona interatividade às páginas. Desenvolvi funcionalidades
@@ -211,7 +211,7 @@
           </p>
         </div>
         <div class="tecnologia">
-          <img src="/portfolio/resources/assets/tecnologias/csharp.png" alt="C#" />
+          <img src="{{ asset('resources/assets/tecnologias/csharp.png') }}" alt="C#" />
           <p>C#</p>
           <p>
             Desenvolve aplicações desktop e web. Aprendendo como matéria de
@@ -219,14 +219,14 @@
           </p>
         </div>
         <div class="tecnologia">
-          <img src="/portfolio/resources/assets/tecnologias/java.png" alt="Java" />
+          <img src="{{ asset('resources/assets/tecnologias/java.png') }}" alt="Java" />
           <p>Java</p>
           <p>
             Desenvolve aplicações Android. Aprendendo como matéria de faculdade.
           </p>
         </div>
         <div class="tecnologia">
-          <img src="/portfolio/resources/assets/tecnologias/mysql.png" alt="MySQL" />
+          <img src="{{ asset('resources/assets/tecnologias/mysql.png') }}" alt="MySQL" />
           <p>MySQL</p>
           <p>
             Gerencia bancos de dados relacionais. Aprendendo como matéria de
@@ -234,7 +234,7 @@
           </p>
         </div>
         <div class="tecnologia">
-          <img src="/portfolio/resources/assets/tecnologias/php.png" alt="PHP" />
+          <img src="{{ asset('resources/assets/tecnologias/php.png') }}" alt="PHP" />
           <p>PHP</p>
           <p>
             Desenvolve aplicações web dinâmicas. Aprendendo como matéria de
@@ -293,7 +293,7 @@
       ↑
       <!-- Você pode substituir isso por um ícone -->
     </div>
-    <script src="/portfolio/resources/js/script.js"></script>
-    <script src="/portfolio/resources/js/app.js"></script>
+    <script src="{{ asset('resources/js/script.js') }}"></script>
+    <script src="{{ asset('resources/js/app.js') }}"></script>
   </body>
 </html>
