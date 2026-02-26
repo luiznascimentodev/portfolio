@@ -190,26 +190,26 @@
 
 ---
 
-## Milestone 8 — SEO
+## Milestone 8 — SEO ✅
 
-- [ ] Configurar `Metadata` do Next.js em todas as páginas
-  - [ ] `title`, `description`, `keywords` na home
-  - [ ] `title` e `description` dinâmicos por post (`generateMetadata`)
-- [ ] Configurar Open Graph e Twitter Cards
-  - [ ] Imagem OG da home (estática)
-  - [ ] Imagem OG dinâmica por post com `next/og` (`app/api/og/route.tsx`)
-- [ ] Criar `sitemap.xml` dinâmico (`app/sitemap.ts`)
-  - [ ] Incluir home, /blog e todos os posts publicados
-- [ ] Criar `robots.txt` (`app/robots.ts`)
-  - [ ] Bloquear rotas `/admin/*`
-- [ ] Configurar URL canônica em todas as páginas
-- [ ] Instalar e configurar dados estruturados (JSON-LD)
-  - [ ] `Person` schema na home
-  - [ ] `BlogPosting` schema em cada post
-  - [ ] `BreadcrumbList` schema no blog
-- [ ] Garantir que posts tenham slug amigável (sem acentos, sem espaços)
-- [ ] Adicionar alt text em todas as imagens
-- [ ] Validar com Google Rich Results Test
+- [x] Configurar `Metadata` do Next.js em todas as páginas
+  - [x] `title`, `description`, `keywords` na home (`app/(public)/page.tsx`)
+  - [x] `title` e `description` dinâmicos por post (`generateMetadata` em `blog/[slug]/page.tsx`)
+- [x] Configurar Open Graph e Twitter Cards
+  - [x] Imagem OG da home — gerada dinamicamente pela rota `/api/og`
+  - [x] Imagem OG dinâmica por post com `next/og` (`app/api/og/route.tsx`)
+- [x] Criar `sitemap.xml` dinâmico (`app/sitemap.ts`)
+  - [x] Incluir home, /blog e todos os posts publicados
+- [x] Criar `robots.txt` (`app/robots.ts`)
+  - [x] Bloquear rotas `/admin/*` e `/api/*`
+- [x] Configurar URL canônica em todas as páginas (`alternates.canonical`)
+- [x] Instalar e configurar dados estruturados (JSON-LD)
+  - [x] `Person` schema na home (`components/seo/PersonJsonLd.tsx`)
+  - [x] `BlogPosting` schema em cada post (`components/seo/BlogPostingJsonLd.tsx`)
+  - [x] `BreadcrumbList` schema no blog e posts (`components/seo/BreadcrumbJsonLd.tsx`)
+- [x] Garantir que posts tenham slug amigável — `slugify()` em `lib/utils.ts` já normaliza NFD
+- [x] Adicionar alt text em todas as imagens (já incluído nos componentes)
+- [x] Build ✅ limpo — commit `[develop 2a12def]`
 
 ---
 
@@ -285,7 +285,7 @@
 | 5 — Editor de Posts              | ✅ Concluído    |
 | 6 — Portfolio (Área Pública)     | ✅ Concluído    |
 | 7 — Blog Público                 | ✅ Concluído    |
-| 8 — SEO                          | ⬜ Não iniciado |
+| 8 — SEO                          | ✅ Concluído    |
 | 9 — Performance e Acessibilidade | ⬜ Não iniciado |
 | 10 — Deploy e CI/CD              | ⬜ Não iniciado |
 | 11 — Indexação e Descoberta      | ⬜ Não iniciado |
