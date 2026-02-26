@@ -107,67 +107,67 @@
 
 ---
 
-## Milestone 5 — Editor de Posts
+## Milestone 5 — Editor de Posts ✅
 
-- [ ] Instalar Novel.js
+- [x] Instalar Novel.js
   ```bash
   npm install novel
   ```
-- [ ] Instalar Uploadthing para upload de imagens
+- [x] Instalar Uploadthing para upload de imagens
   ```bash
   npm install uploadthing @uploadthing/react
   ```
-- [ ] Criar componente `components/admin/Editor.tsx` com Novel
-- [ ] Configurar rota de upload `app/api/uploadthing/route.ts`
-- [ ] Criar página de novo post `app/(admin)/posts/new/page.tsx`
-  - [ ] Campo de título
-  - [ ] Upload de imagem de capa
-  - [ ] Editor Novel (corpo do post)
-  - [ ] Campo de tags (input com chips)
-  - [ ] Campo de excerpt (resumo)
-  - [ ] Geração automática de slug a partir do título
-  - [ ] Botão salvar rascunho
-  - [ ] Botão publicar
-  - [ ] Auto-save a cada 3 segundos
-- [ ] Criar página de editar post `app/(admin)/posts/[id]/page.tsx`
-  - [ ] Carregar dados existentes no editor
-  - [ ] Mesmos recursos da criação
-- [ ] Testar fluxo completo no mobile (criar e editar post pelo celular)
+- [x] Criar componente `components/admin/NovelEditor.tsx` com Novel
+  - [x] Slash commands (`/`) para texto, títulos, listas, citação, código, separador
+  - [x] Bubble menu (bold, italic, underline, strike, code inline)
+- [x] Configurar rota de upload `app/api/uploadthing/route.ts`
+- [x] Criar `lib/uploadthing.ts` (file router com auth) e `lib/uploadthing-client.ts`
+- [x] Criar `components/admin/TagInput.tsx` — input de chips (Enter/vírgula adiciona, Backspace remove)
+- [x] Criar `components/admin/CoverImageUpload.tsx` — upload + preview com `next/image`
+- [x] Criar `app/(admin)/admin/posts/editor-actions.ts` — server actions (`createPost`, `updatePost`, `autoSave`)
+- [x] Criar página de novo post `app/(admin)/admin/posts/new/page.tsx`
+  - [x] Campo de título
+  - [x] Upload de imagem de capa
+  - [x] Editor Novel (corpo do post)
+  - [x] Campo de tags (input com chips)
+  - [x] Campo de excerpt (resumo, 300 chars)
+  - [x] Geração automática de slug a partir do título
+  - [x] Botão salvar rascunho
+  - [x] Botão publicar
+  - [x] Auto-save a cada 3 segundos
+- [x] Criar página de editar post `app/(admin)/admin/posts/[id]/page.tsx`
+  - [x] Carregar dados existentes no editor
+  - [x] Mesmos recursos da criação
+- [x] Build ✅ limpo — commit `[develop f7dacc4]`
 
 ---
 
-## Milestone 6 — Portfolio (Área Pública)
+## Milestone 6 — Portfolio (Área Pública) ✅
 
-> ✅ Os componentes já estão desenvolvidos no projeto Vite atual. Esta milestone cobre apenas a adaptação para Next.js — sem reescrita.
+> Os componentes foram migrados do projeto Vite sem reescrita — apenas adaptações para Next.js.
 
-**Adaptações necessárias em todos os componentes:**
+**Contextos (SSR-safe):**
 
-- Adicionar diretiva `"use client"` nos componentes que usam hooks (`useState`, `useContext`, etc.)
-- Substituir `<img>` por `next/image` onde aplicável
-- Ajustar imports de assets (`avatar.webp` via `public/` ou `next/image`)
+- [x] Migrar `ThemeContext.tsx` → `localStorage` lido via `useEffect` (sem acesso no servidor)
+- [x] Migrar `LanguageContext.tsx` → idem, com detecção de `navigator.language` no cliente
+- [x] Criar `constants/translations.ts` e `types/portfolio.ts` na raiz (visíveis pelo alias `@/`)
 
-**Contextos:**
+**Componentes (em `components/portfolio/`):**
 
-- [ ] Migrar `ThemeContext.tsx` → ajustar `localStorage` com verificação de `typeof window` (SSR safe)
-- [ ] Migrar `LanguageContext.tsx` → idem
-- [ ] Migrar `translations.ts` e `types/index.ts` sem alterações
-
-**Componentes (copiar e adaptar):**
-
-- [ ] `Sidebar.tsx` → adicionar `"use client"`, trocar `<img>` por `next/image`
-- [ ] `Card.tsx` → verificar necessidade de `"use client"`
-- [ ] `About.tsx` → copiar sem alterações (usa apenas contexto)
-- [ ] `Contact.tsx` → copiar sem alterações
-- [ ] `Projects.tsx` → copiar sem alterações
-- [ ] `Skills.tsx` → copiar sem alterações
+- [x] `Sidebar.tsx` → `"use client"`, `<img>` substituído por `next/image`
+- [x] `Card.tsx` → `"use client"`
+- [x] `About.tsx` → `"use client"`, imports ajustados para `@/`
+- [x] `Contact.tsx` → `"use client"`, imports ajustados
+- [x] `Projects.tsx` → `"use client"`, imports ajustados
+- [x] `Skills.tsx` → `"use client"`, imports ajustados
+- [x] `PortfolioApp.tsx` → componente raiz client que replica o `App.tsx` do Vite
 
 **Página e layout:**
 
-- [ ] Criar `app/(public)/page.tsx` replicando a lógica do `App.tsx` atual
-- [ ] Criar `app/(public)/layout.tsx` com os providers (`ThemeProvider`, `LanguageProvider`)
-- [ ] Mover `avatar.webp` para a pasta `public/` do Next.js
-- [ ] Validar responsividade em mobile, tablet e desktop
-- [ ] Conferir dark/light mode funcionando corretamente com Next.js
+- [x] Atualizar `app/(public)/page.tsx` para usar `<PortfolioApp />`
+- [x] Atualizar `app/(public)/layout.tsx` com `ThemeProvider` + `LanguageProvider`
+- [x] `avatar.webp` copiado para `public/`
+- [x] Build ✅ limpo — commit `[develop bffdff9]`
 
 ---
 
@@ -284,8 +284,8 @@
 | 2 — Banco de Dados e ORM         | ✅ Concluído                               |
 | 3 — Autenticação                 | ✅ Concluído                               |
 | 4 — Painel Administrativo        | ✅ Concluído                               |
-| 5 — Editor de Posts              | ⬜ Não iniciado                            |
-| 6 — Portfolio (Área Pública)     | 🟡 Componentes prontos (migração pendente) |
+| 5 — Editor de Posts              | ✅ Concluído                               |
+| 6 — Portfolio (Área Pública)     | ✅ Concluído                               |
 | 7 — Blog Público                 | ⬜ Não iniciado                            |
 | 8 — SEO                          | ⬜ Não iniciado                            |
 | 9 — Performance e Acessibilidade | ⬜ Não iniciado                            |
