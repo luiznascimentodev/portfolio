@@ -40,16 +40,10 @@
 - [x] Criar `prisma/seed.ts` — cria usuário admin com senha hasheada (bcrypt)
 - [x] Adicionar scripts no `package.json`: `db:generate`, `db:migrate`, `db:migrate:prod`, `db:studio`, `db:seed`, `db:reset`
 - [x] Atualizar `.env.local` e `.env.local.example` com `DATABASE_URL`, `DIRECT_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`
-- [ ] ⏳ Rodar migration (requer Docker Desktop ativo)
-  ```bash
-  # 1. Inicie o Docker Desktop
-  # 2. Suba o PostgreSQL local:
-  docker compose up -d db
-  # 3. Rode a migration:
-  npm run db:migrate
-  # 4. Popule o banco com o admin:
-  npm run db:seed
-  ```
+- [x] ⏳ ~~Rodar migration (requer Docker Desktop ativo)~~ → **Concluído**
+  - Migration `20260226010023` gerada e aplicada
+  - Seed executado com sucesso — usuário admin criado
+  - Nota técnica: Prisma 7 exige `@prisma/adapter-pg` no construtor (`prisma.config.ts` separa config CLI do runtime)
 
 ---
 
@@ -266,7 +260,7 @@
 | Milestone                        | Status                                            |
 | -------------------------------- | ------------------------------------------------- |
 | 1 — Setup do Projeto             | ✅ Concluído                                      |
-| 2 — Banco de Dados e ORM         | ✅ Concluído (migration pendente — requer Docker) |
+| 2 — Banco de Dados e ORM         | ✅ Concluído                                      |
 | 3 — Autenticação                 | ⬜ Não iniciado                                   |
 | 4 — Painel Administrativo        | ⬜ Não iniciado                                   |
 | 5 — Editor de Posts              | ⬜ Não iniciado                                   |
