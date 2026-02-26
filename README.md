@@ -278,17 +278,17 @@
 
 ## Progresso Geral
 
-| Milestone                        | Status                                     |
-| -------------------------------- | ------------------------------------------ |
-| 1 — Setup do Projeto             | ✅ Concluído                               |
-| 2 — Banco de Dados e ORM         | ✅ Concluído                               |
-| 3 — Autenticação                 | ✅ Concluído                               |
-| 4 — Painel Administrativo        | ✅ Concluído                               |
-| 5 — Editor de Posts              | ✅ Concluído                               |
-| 6 — Portfolio (Área Pública)     | ✅ Concluído                               |
-| 7 — Blog Público                 | ⬜ Não iniciado                            |
-| 8 — SEO                          | ⬜ Não iniciado                            |
-| 9 — Performance e Acessibilidade | ⬜ Não iniciado                            |
-| 10 — Deploy e CI/CD              | ⬜ Não iniciado                            |
-| 11 — Indexação e Descoberta      | ⬜ Não iniciado                            |
-| 12 — Polimento Final             | ⬜ Não iniciado                            |
+| Milestone                        | Status          |
+| -------------------------------- | --------------- |
+| 1 — Setup do Projeto             | ✅ Concluído    |
+| 2 — Banco de Dados e ORM         | ✅ Concluído    |
+| 3 — Autenticação                 | ✅ Concluído    |
+| 4 — Painel Administrativo        | ✅ Concluído    |
+| 5 — Editor de Posts              | ✅ Concluído    |
+| 6 — Portfolio (Área Pública)     | ✅ Concluído    |
+| 7 — Blog Público                 | ⬜ Não iniciado |
+| 8 — SEO                          | ⬜ Não iniciado |
+| 9 — Performance e Acessibilidade | ⬜ Não iniciado |
+| 10 — Deploy e CI/CD              | ⬜ Não iniciado |
+| 11 — Indexação e Descoberta      | ⬜ Não iniciado |
+| 12 — Polimento Final             | ⬜ Não iniciado |
