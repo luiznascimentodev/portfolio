@@ -47,21 +47,27 @@
 
 ---
 
-## Milestone 3 — Autenticação
+## Milestone 3 — Autenticação ✅
 
-- [ ] Instalar NextAuth v5
+- [x] Instalar NextAuth v5
   ```bash
-  npm install next-auth@beta bcryptjs
-  npm install -D @types/bcryptjs
+  npm install next-auth@beta
+  # bcryptjs e @types/bcryptjs já estavam instalados
   ```
-- [ ] Configurar `lib/auth.ts` com provider Credentials (email + senha)
-- [ ] Criar rota `app/api/auth/[...nextauth]/route.ts`
-- [ ] Criar página de login `app/(admin)/login/page.tsx`
-  - [ ] Formulário com email e senha
-  - [ ] Validação client-side
-  - [ ] Feedback de erro de autenticação
-- [ ] Configurar `middleware.ts` para proteger todas as rotas `/admin/*`
-- [ ] Testar fluxo completo de login e logout
+- [x] Criar `lib/auth.config.ts` — config edge-compatible (sem db) usada pelo middleware
+- [x] Criar `lib/auth.ts` com provider Credentials (email + senha + bcrypt + db)
+- [x] Criar rota `app/api/auth/[...nextauth]/route.ts`
+- [x] Criar página de login `app/(admin)/login/page.tsx`
+  - [x] Formulário com email e senha (`LoginForm.tsx` — client component)
+  - [x] Validação client-side (campos obrigatórios)
+  - [x] Feedback de erro de autenticação (via `useActionState` + server action)
+- [x] Configurar `middleware.ts` para proteger todas as rotas `/admin/*`
+  - [x] Split config: middleware usa `auth.config.ts` (Edge-compatible, sem Node.js APIs)
+  - [x] Middleware: 207 kB → 86.6 kB após remover `pg` e `bcryptjs` do bundle
+- [x] Criar `app/(admin)/layout.tsx` com header, email do usuário e botão de logout
+- [x] Criar `app/(admin)/dashboard/page.tsx` com cards de estatísticas (total/publicados/rascunhos)
+- [x] Criar `components/admin/LogoutButton.tsx` (client component com `signOut`)
+- [x] Testar fluxo completo de login e logout — build ✅ limpo
 
 ---
 
@@ -257,17 +263,17 @@
 
 ## Progresso Geral
 
-| Milestone                        | Status                                            |
-| -------------------------------- | ------------------------------------------------- |
-| 1 — Setup do Projeto             | ✅ Concluído                                      |
-| 2 — Banco de Dados e ORM         | ✅ Concluído                                      |
-| 3 — Autenticação                 | ⬜ Não iniciado                                   |
-| 4 — Painel Administrativo        | ⬜ Não iniciado                                   |
-| 5 — Editor de Posts              | ⬜ Não iniciado                                   |
-| 6 — Portfolio (Área Pública)     | 🟡 Componentes prontos (migração pendente)        |
-| 7 — Blog Público                 | ⬜ Não iniciado                                   |
-| 8 — SEO                          | ⬜ Não iniciado                                   |
-| 9 — Performance e Acessibilidade | ⬜ Não iniciado                                   |
-| 10 — Deploy e CI/CD              | ⬜ Não iniciado                                   |
-| 11 — Indexação e Descoberta      | ⬜ Não iniciado                                   |
-| 12 — Polimento Final             | ⬜ Não iniciado                                   |
+| Milestone                        | Status                                     |
+| -------------------------------- | ------------------------------------------ |
+| 1 — Setup do Projeto             | ✅ Concluído                               |
+| 2 — Banco de Dados e ORM         | ✅ Concluído                               |
+| 3 — Autenticação                 | ✅ Concluído                               |
+| 4 — Painel Administrativo        | ⬜ Não iniciado                            |
+| 5 — Editor de Posts              | ⬜ Não iniciado                            |
+| 6 — Portfolio (Área Pública)     | 🟡 Componentes prontos (migração pendente) |
+| 7 — Blog Público                 | ⬜ Não iniciado                            |
+| 8 — SEO                          | ⬜ Não iniciado                            |
+| 9 — Performance e Acessibilidade | ⬜ Não iniciado                            |
+| 10 — Deploy e CI/CD              | ⬜ Não iniciado                            |
+| 11 — Indexação e Descoberta      | ⬜ Não iniciado                            |
+| 12 — Polimento Final             | ⬜ Não iniciado                            |
