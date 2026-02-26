@@ -4,7 +4,7 @@
 
 - **Framework:** Next.js 15 (App Router)
 - **Banco de dados:** PostgreSQL (Neon.tech)
-- **ORM:** Drizzle ORM
+- **ORM:** Prisma ORM v7
 - **Auth:** NextAuth v5 (Auth.js)
 - **Editor:** Novel.js (estilo Notion)
 - **Upload:** Uploadthing
@@ -29,25 +29,27 @@
 
 ---
 
-## Milestone 2 — Banco de Dados e ORM
+## Milestone 2 — Banco de Dados e ORM ✅
 
-- [ ] Criar conta e projeto no [Neon.tech](https://neon.tech) (PostgreSQL serverless)
-- [ ] Instalar Drizzle ORM
+> ⚠️ Ó **Prisma** é o ORM mais utilizado no mercado, não o Drizzle. Milestone implementado com Prisma 7.
+
+- [x] Instalar Prisma ORM v7 (`@prisma/client`, `prisma`)
+- [x] Criar schema em `prisma/schema.prisma` com models `Post` e `User`
+- [x] Configurar `prisma.config.ts` com `DIRECT_URL` para migrations no Neon.tech
+- [x] Criar `lib/db/index.ts` — singleton do Prisma Client
+- [x] Criar `prisma/seed.ts` — cria usuário admin com senha hasheada (bcrypt)
+- [x] Adicionar scripts no `package.json`: `db:generate`, `db:migrate`, `db:migrate:prod`, `db:studio`, `db:seed`, `db:reset`
+- [x] Atualizar `.env.local` e `.env.local.example` com `DATABASE_URL`, `DIRECT_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`
+- [ ] ⏳ Rodar migration (requer Docker Desktop ativo)
   ```bash
-  npm install drizzle-orm @neondatabase/serverless
-  npm install -D drizzle-kit
+  # 1. Inicie o Docker Desktop
+  # 2. Suba o PostgreSQL local:
+  docker compose up -d db
+  # 3. Rode a migration:
+  npm run db:migrate
+  # 4. Popule o banco com o admin:
+  npm run db:seed
   ```
-- [ ] Configurar `lib/db/index.ts` com a conexão ao Neon
-- [ ] Criar schema das tabelas em `lib/db/schema.ts`
-  - Tabela `posts` (id, title, slug, content, excerpt, cover_image, published, tags, created_at, updated_at)
-  - Tabela `users` (id, email, password, created_at)
-- [ ] Configurar `drizzle.config.ts`
-- [ ] Rodar primeira migration
-  ```bash
-  npx drizzle-kit generate
-  npx drizzle-kit migrate
-  ```
-- [ ] Popular banco com usuário admin inicial (seed script)
 
 ---
 
@@ -264,7 +266,7 @@
 | Milestone                        | Status                                     |
 | -------------------------------- | ------------------------------------------ |
 | 1 — Setup do Projeto             | ✅ Concluído                               |
-| 2 — Banco de Dados e ORM         | ⬜ Não iniciado                            |
+| 2 — Banco de Dados e ORM         | ✅ Concluído (migration pendente — requer Docker)  |
 | 3 — Autenticação                 | ⬜ Não iniciado                            |
 | 4 — Painel Administrativo        | ⬜ Não iniciado                            |
 | 5 — Editor de Posts              | ⬜ Não iniciado                            |
