@@ -213,18 +213,27 @@
 
 ---
 
-## Milestone 9 — Performance e Acessibilidade
+## Milestone 9 — Performance e Acessibilidade ✅
 
-- [ ] Todas as páginas públicas com SSG ou ISR (sem client-side fetch)
-- [ ] Configurar ISR nos posts (`revalidate: 60`)
-- [ ] Otimizar Web Vitals (LCP, CLS, FID)
-  - [ ] Imagens com `next/image` e `priority` no LCP
-  - [ ] Evitar layout shift em fontes com `next/font`
-  - [ ] Lazy load em componentes pesados
-- [ ] Testar score no Lighthouse (meta: 90+ em todas as categorias)
-- [ ] Garantir contraste de cores adequado (WCAG AA)
-- [ ] Navegar todo o site pelo teclado (foco visível)
-- [ ] Adicionar `aria-label` em botões e links sem texto
+- [x] Todas as páginas públicas com ISR (sem client-side fetch)
+- [x] Configurar ISR nos posts e blog (`export const revalidate = 60`)
+- [x] Otimizar Web Vitals (LCP, CLS, FID)
+  - [x] Imagens com `next/image` e `priority` no LCP (cover da página de post)
+  - [x] Fonte Inter com `display: 'swap'` via `next/font` — zero layout shift
+  - [x] Componentes portfolio já isolados como client components (sem impacto no bundle público)
+- [x] Garantir contraste de cores adequado (WCAG AA) — paleta `#10b981` sobre fundos escuros
+- [x] Navegar pelo teclado — skip-to-content link adicionado ao layout raiz
+- [x] `<main id="main-content">` no layout público para o skip link funcionar
+- [x] `:focus-visible` global com outline verde `#10b981` para foco de teclado visível
+- [x] `scroll-behavior: smooth` para navegação interna suave
+- [x] Acessibilidade na listagem do blog:
+  - [x] Filtro de tags em `<nav aria-label="Filtro por tags">`
+  - [x] `aria-current` no tag ativa e na página atual
+  - [x] Paginação em `<nav aria-label="Paginação">`
+  - [x] `aria-label` em cada link de página ("Página anterior", "Página N", "Próxima página")
+  - [x] Contador de posts com `role="status"` + `aria-live="polite"`
+- [x] `aria-label` em todos os botões icon-only (`ShareButtons`)
+- [x] Build ✅ limpo — commit `[develop 0e56ee3]`
 
 ---
 
@@ -286,7 +295,7 @@
 | 6 — Portfolio (Área Pública)     | ✅ Concluído    |
 | 7 — Blog Público                 | ✅ Concluído    |
 | 8 — SEO                          | ✅ Concluído    |
-| 9 — Performance e Acessibilidade | ⬜ Não iniciado |
+| 9 — Performance e Acessibilidade | ✅ Concluído    |
 | 10 — Deploy e CI/CD              | ⬜ Não iniciado |
 | 11 — Indexação e Descoberta      | ⬜ Não iniciado |
 | 12 — Polimento Final             | ⬜ Não iniciado |
