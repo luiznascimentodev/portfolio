@@ -6,12 +6,16 @@
  * ⚠️  Altere ADMIN_EMAIL e ADMIN_PASSWORD no .env.local antes de rodar.
  */
 
-import "dotenv/config";
+import { Pool } from "pg";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
-// Prisma 7: lê DATABASE_URL do ambiente automaticamente
-const db = new PrismaClient();
+// Prisma 7: driver adapter obrigatório com prisma.config.ts
+// DATABASE_URL carregada pelo tsx --env-file .env.local
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const db = new PrismaClient({ adapter });
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "admin@exemplo.com";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "admin123";
@@ -48,4 +52,5 @@ main()
   })
   .finally(async () => {
     await db.$disconnect();
+    await pool.end();
   });

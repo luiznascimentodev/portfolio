@@ -263,17 +263,17 @@
 
 ## Progresso Geral
 
-| Milestone                        | Status                                     |
-| -------------------------------- | ------------------------------------------ |
-| 1 — Setup do Projeto             | ✅ Concluído                               |
-| 2 — Banco de Dados e ORM         | ✅ Concluído (migration pendente — requer Docker)  |
-| 3 — Autenticação                 | ⬜ Não iniciado                            |
-| 4 — Painel Administrativo        | ⬜ Não iniciado                            |
-| 5 — Editor de Posts              | ⬜ Não iniciado                            |
-| 6 — Portfolio (Área Pública)     | 🟡 Componentes prontos (migração pendente) |
-| 7 — Blog Público                 | ⬜ Não iniciado                            |
-| 8 — SEO                          | ⬜ Não iniciado                            |
-| 9 — Performance e Acessibilidade | ⬜ Não iniciado                            |
-| 10 — Deploy e CI/CD              | ⬜ Não iniciado                            |
-| 11 — Indexação e Descoberta      | ⬜ Não iniciado                            |
-| 12 — Polimento Final             | ⬜ Não iniciado                            |
+| Milestone                        | Status                                            |
+| -------------------------------- | ------------------------------------------------- |
+| 1 — Setup do Projeto             | ✅ Concluído                                      |
+| 2 — Banco de Dados e ORM         | ✅ Concluído (migration pendente — requer Docker) |
+| 3 — Autenticação                 | ⬜ Não iniciado                                   |
+| 4 — Painel Administrativo        | ⬜ Não iniciado                                   |
+| 5 — Editor de Posts              | ⬜ Não iniciado                                   |
+| 6 — Portfolio (Área Pública)     | 🟡 Componentes prontos (migração pendente)        |
+| 7 — Blog Público                 | ⬜ Não iniciado                                   |
+| 8 — SEO                          | ⬜ Não iniciado                                   |
+| 9 — Performance e Acessibilidade | ⬜ Não iniciado                                   |
+| 10 — Deploy e CI/CD              | ⬜ Não iniciado                                   |
+| 11 — Indexação e Descoberta      | ⬜ Não iniciado                                   |
+| 12 — Polimento Final             | ⬜ Não iniciado                                   |

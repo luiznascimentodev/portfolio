@@ -1,20 +1,27 @@
+import { Pool } from "pg";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
 
-// Singleton para evitar múltiplas instâncias em desenvolvimento (hot-reload)
-// Prisma 7: lê DATABASE_URL do ambiente automaticamente (sem passar no constructor)
-// https://pris.ly/d/prisma7-client-config
+// Prisma 7: driver adapters são obrigatórios com prisma.config.ts
+// Localmente usa PostgreSQL Docker; em produção usará @prisma/adapter-neon (Milestone 10)
+// Next.js carrega .env.local automaticamente
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-export const db =
-  globalForPrisma.prisma ??
-  new PrismaClient({
+function createPrismaClient() {
+  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  const adapter = new PrismaPg(pool);
+  return new PrismaClient({
+    adapter,
     log:
       process.env.NODE_ENV === "development"
         ? ["query", "error", "warn"]
         : ["error"],
   });
+}
+
+export const db = globalForPrisma.prisma ?? createPrismaClient();
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;
