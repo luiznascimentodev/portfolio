@@ -37,6 +37,9 @@
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^7.7.4"
   },
+  "overrides": {
+    "effect": "3.18.4"
+  },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "@types/bcryptjs": "^2.4.6",

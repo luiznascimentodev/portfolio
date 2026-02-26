@@ -1,76 +1,69 @@
-"use client"
+"use client";
 
-import { useState, useCallback, useEffect, useRef, useTransition } from "react"
-import type { JSONContent } from "novel"
-import { NovelEditor } from "@/components/admin/NovelEditor"
-import { TagInput } from "@/components/admin/TagInput"
-import { CoverImageUpload } from "@/components/admin/CoverImageUpload"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { slugify, readingTime } from "@/lib/utils"
-import {
-  Save,
-  Send,
-  EyeOff,
-  Loader2,
-  CheckCircle2,
-  Clock,
-} from "lucide-react"
-import { createPost, updatePost, autoSave } from "../editor-actions"
+import { useState, useCallback, useEffect, useRef, useTransition } from "react";
+import type { JSONContent } from "novel";
+import { NovelEditor } from "@/components/admin/NovelEditor";
+import { TagInput } from "@/components/admin/TagInput";
+import { CoverImageUpload } from "@/components/admin/CoverImageUpload";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { slugify, readingTime } from "@/lib/utils";
+import { Save, Send, EyeOff, Loader2, CheckCircle2, Clock } from "lucide-react";
+import { createPost, updatePost, autoSave } from "../editor-actions";
 
 // ── Tipos ──────────────────────────────────────────────────────────────────
 
 interface PostFormProps {
   /** Quando presente, entra em modo de edição */
   initialData?: {
-    id: string
-    title: string
-    content: string // JSON string
-    excerpt?: string | null
-    coverImage?: string | null
-    tags: string[]
-    published: boolean
-  }
+    id: string;
+    title: string;
+    content: string; // JSON string
+    excerpt?: string | null;
+    coverImage?: string | null;
+    tags: string[];
+    published: boolean;
+  };
 }
 
-type SaveStatus = "idle" | "saving" | "saved" | "error"
+type SaveStatus = "idle" | "saving" | "saved" | "error";
 
 // ── Componente principal ───────────────────────────────────────────────────
 
 export function PostForm({ initialData }: PostFormProps) {
-  const isEdit = !!initialData
-  const savedIdRef = useRef<string | null>(initialData?.id ?? null)
+  const isEdit = !!initialData;
+  const savedIdRef = useRef<string | null>(initialData?.id ?? null);
 
   // Estado do formulário
-  const [title, setTitle] = useState(initialData?.title ?? "")
+  const [title, setTitle] = useState(initialData?.title ?? "");
   const [content, setContent] = useState<JSONContent>(
     initialData?.content
       ? (JSON.parse(initialData.content) as JSONContent)
-      : { type: "doc", content: [] }
-  )
-  const [excerpt, setExcerpt] = useState(initialData?.excerpt ?? "")
+      : { type: "doc", content: [{ type: "paragraph" }] },
+  );
+  const [excerpt, setExcerpt] = useState(initialData?.excerpt ?? "");
   const [coverImage, setCoverImage] = useState<string | null>(
-    initialData?.coverImage ?? null
-  )
-  const [tags, setTags] = useState<string[]>(initialData?.tags ?? [])
+    initialData?.coverImage ?? null,
+  );
+  const [tags, setTags] = useState<string[]>(initialData?.tags ?? []);
 
   // Estado de UI
-  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle")
-  const [isPendingAction, startActionTransition] = useTransition()
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
+  const [isPendingAction, startActionTransition] = useTransition();
 
   // Slug preview
-  const slugPreview = slugify(title)
+  const slugPreview = slugify(title);
 
   // ── Auto-save ──────────────────────────────────────────────────────────
-  const autoSaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const autoSaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const triggerAutoSave = useCallback(() => {
-    if (autoSaveTimerRef.current) clearTimeout(autoSaveTimerRef.current)
+    if (autoSaveTimerRef.current) clearTimeout(autoSaveTimerRef.current);
 
     autoSaveTimerRef.current = setTimeout(async () => {
-      if (!title && !content) return
-      setSaveStatus("saving")
+      if (!title && !content) return;
+      setSaveStatus("saving");
       try {
         const id = await autoSave(savedIdRef.current, {
           title,
@@ -78,29 +71,29 @@ export function PostForm({ initialData }: PostFormProps) {
           excerpt,
           coverImage,
           tags,
-        })
-        savedIdRef.current = id
-        setSaveStatus("saved")
-        setTimeout(() => setSaveStatus("idle"), 2500)
+        });
+        savedIdRef.current = id;
+        setSaveStatus("saved");
+        setTimeout(() => setSaveStatus("idle"), 2500);
       } catch {
-        setSaveStatus("error")
+        setSaveStatus("error");
       }
-    }, 3000)
-  }, [title, content, excerpt, coverImage, tags])
+    }, 3000);
+  }, [title, content, excerpt, coverImage, tags]);
 
   // Dispara auto-save ao alterar título ou conteúdo
   useEffect(() => {
-    triggerAutoSave()
+    triggerAutoSave();
     return () => {
-      if (autoSaveTimerRef.current) clearTimeout(autoSaveTimerRef.current)
-    }
-  }, [triggerAutoSave])
+      if (autoSaveTimerRef.current) clearTimeout(autoSaveTimerRef.current);
+    };
+  }, [triggerAutoSave]);
 
   // ── Ações de submit ────────────────────────────────────────────────────
 
   function handleSaveDraft() {
     startActionTransition(async () => {
-      setSaveStatus("saving")
+      setSaveStatus("saving");
       try {
         if (isEdit) {
           await updatePost(initialData!.id, {
@@ -110,15 +103,22 @@ export function PostForm({ initialData }: PostFormProps) {
             coverImage,
             tags,
             publish: false,
-          })
+          });
         } else {
-          await createPost({ title, content, excerpt, coverImage, tags, publish: false })
+          await createPost({
+            title,
+            content,
+            excerpt,
+            coverImage,
+            tags,
+            publish: false,
+          });
         }
-        setSaveStatus("saved")
+        setSaveStatus("saved");
       } catch {
-        setSaveStatus("error")
+        setSaveStatus("error");
       }
-    })
+    });
   }
 
   function handlePublish() {
@@ -131,11 +131,18 @@ export function PostForm({ initialData }: PostFormProps) {
           coverImage,
           tags,
           publish: true,
-        })
+        });
       } else {
-        await createPost({ title, content, excerpt, coverImage, tags, publish: true })
+        await createPost({
+          title,
+          content,
+          excerpt,
+          coverImage,
+          tags,
+          publish: true,
+        });
       }
-    })
+    });
   }
 
   function handleUnpublish() {
@@ -148,12 +155,12 @@ export function PostForm({ initialData }: PostFormProps) {
           coverImage,
           tags,
           publish: false,
-        })
+        });
       }
-    })
+    });
   }
 
-  const isPublished = initialData?.published ?? false
+  const isPublished = initialData?.published ?? false;
 
   // ── Render ─────────────────────────────────────────────────────────────
 
@@ -166,9 +173,7 @@ export function PostForm({ initialData }: PostFormProps) {
             {isEdit ? "Editar Post" : "Novo Post"}
           </h1>
           {title && (
-            <p className="mt-0.5 text-xs text-gray-500">
-              /{slugPreview}
-            </p>
+            <p className="mt-0.5 text-xs text-gray-500">/{slugPreview}</p>
           )}
         </div>
 
@@ -245,7 +250,10 @@ export function PostForm({ initialData }: PostFormProps) {
         <div className="space-y-4">
           {/* Título */}
           <div className="space-y-1.5">
-            <Label htmlFor="title" className="text-sm font-medium text-gray-300">
+            <Label
+              htmlFor="title"
+              className="text-sm font-medium text-gray-300"
+            >
               Título <span className="text-red-500">*</span>
             </Label>
             <Input
@@ -263,7 +271,11 @@ export function PostForm({ initialData }: PostFormProps) {
               Conteúdo <span className="text-red-500">*</span>
             </Label>
             <p className="text-xs text-gray-600">
-              Digite <kbd className="rounded bg-gray-800 px-1 py-0.5 text-gray-400">/</kbd> para ver os comandos disponíveis.
+              Digite{" "}
+              <kbd className="rounded bg-gray-800 px-1 py-0.5 text-gray-400">
+                /
+              </kbd>{" "}
+              para ver os comandos disponíveis.
             </p>
             <NovelEditor
               initialContent={
@@ -291,7 +303,10 @@ export function PostForm({ initialData }: PostFormProps) {
 
           {/* Excerpt */}
           <div className="space-y-1.5">
-            <Label htmlFor="excerpt" className="text-sm font-medium text-gray-300">
+            <Label
+              htmlFor="excerpt"
+              className="text-sm font-medium text-gray-300"
+            >
               Resumo (excerpt)
             </Label>
             <textarea
@@ -310,16 +325,22 @@ export function PostForm({ initialData }: PostFormProps) {
 
           {/* Tags */}
           <div className="space-y-1.5">
-            <Label className="text-sm font-medium text-gray-300">
-              Tags
-            </Label>
+            <Label className="text-sm font-medium text-gray-300">Tags</Label>
             <TagInput
               value={tags}
               onChange={setTags}
               placeholder="next.js, react, typescript..."
             />
             <p className="text-xs text-gray-600">
-              Pressione <kbd className="rounded bg-gray-800 px-1 py-0.5 text-gray-400">Enter</kbd> ou <kbd className="rounded bg-gray-800 px-1 py-0.5 text-gray-400">,</kbd> para adicionar
+              Pressione{" "}
+              <kbd className="rounded bg-gray-800 px-1 py-0.5 text-gray-400">
+                Enter
+              </kbd>{" "}
+              ou{" "}
+              <kbd className="rounded bg-gray-800 px-1 py-0.5 text-gray-400">
+                ,
+              </kbd>{" "}
+              para adicionar
             </p>
           </div>
 
@@ -342,5 +363,5 @@ export function PostForm({ initialData }: PostFormProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   EditorRoot,
   EditorContent,
@@ -10,6 +11,14 @@ import {
   EditorBubble,
   EditorBubbleItem,
   JSONContent,
+  // extensões necessárias para o TipTap funcionar
+  StarterKit,
+  TiptapUnderline,
+  Command,
+  renderItems,
+  createSuggestionItems,
+  handleCommandNavigation,
+  Placeholder,
 } from "novel";
 import type { Editor } from "@tiptap/core";
 import { Bold, Italic, Underline, Strikethrough, Code } from "lucide-react";
@@ -17,17 +26,12 @@ import { cn } from "@/lib/utils";
 
 // ── Slash commands ─────────────────────────────────────────────────────────
 
-interface CommandArgs {
-  editor: Editor;
-  range: { from: number; to: number };
-}
-
-const slashCommands = [
+const slashCommands = createSuggestionItems([
   {
     title: "Texto",
     description: "Parágrafo normal",
     icon: "¶",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).setParagraph().run();
     },
   },
@@ -35,7 +39,7 @@ const slashCommands = [
     title: "Título 1",
     description: "Seção principal",
     icon: "H1",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).setHeading({ level: 1 }).run();
     },
   },
@@ -43,7 +47,7 @@ const slashCommands = [
     title: "Título 2",
     description: "Subseção",
     icon: "H2",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).setHeading({ level: 2 }).run();
     },
   },
@@ -51,7 +55,7 @@ const slashCommands = [
     title: "Título 3",
     description: "Sub-subseção",
     icon: "H3",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).setHeading({ level: 3 }).run();
     },
   },
@@ -59,7 +63,7 @@ const slashCommands = [
     title: "Lista",
     description: "Lista com marcadores",
     icon: "•",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleBulletList().run();
     },
   },
@@ -67,7 +71,7 @@ const slashCommands = [
     title: "Lista numerada",
     description: "Lista ordenada",
     icon: "1.",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleOrderedList().run();
     },
   },
@@ -75,7 +79,7 @@ const slashCommands = [
     title: "Citação",
     description: "Bloco de citação",
     icon: "❝",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleBlockquote().run();
     },
   },
@@ -83,7 +87,7 @@ const slashCommands = [
     title: "Código",
     description: "Bloco de código",
     icon: "</>",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleCodeBlock().run();
     },
   },
@@ -91,10 +95,31 @@ const slashCommands = [
     title: "Separador",
     description: "Linha horizontal",
     icon: "—",
-    command: ({ editor, range }: CommandArgs) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).setHorizontalRule().run();
     },
   },
+]);
+
+// ── Extensões do TipTap ────────────────────────────────────────────────────
+// StarterKit fornece o nó 'doc' (e paragraph, text, heading, etc.)
+// que o TipTap exige obrigatoriamente para montar o schema.
+
+const extensions = [
+  StarterKit,
+  TiptapUnderline,
+  Placeholder.configure({
+    placeholder: "Escreva algo ou use / para comandos…",
+  }),
+  Command.configure({
+    suggestion: {
+      items: ({ query }: { query: string }) =>
+        slashCommands.filter((item) =>
+          item.title.toLowerCase().includes(query.toLowerCase()),
+        ),
+      render: renderItems,
+    },
+  }),
 ];
 
 // ── Bubble Menu items ──────────────────────────────────────────────────────
@@ -154,10 +179,29 @@ export function NovelEditor({
   onChange,
   className,
 }: NovelEditorProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div
+        className={cn(
+          "novel-editor min-h-[400px] w-full rounded-xl border border-gray-700 bg-gray-900",
+          className,
+        )}
+      />
+    );
+  }
+
   return (
     <EditorRoot>
       <EditorContent
+        immediatelyRender={false}
         initialContent={initialContent}
+        extensions={extensions}
         className={cn(
           "novel-editor min-h-[400px] w-full rounded-xl border border-gray-700 bg-gray-900 px-6 py-5 text-gray-100",
           "focus-within:border-gray-600",
@@ -178,6 +222,9 @@ export function NovelEditor({
           className,
         )}
         editorProps={{
+          handleDOMEvents: {
+            keydown: (_view, event) => handleCommandNavigation(event),
+          },
           attributes: {
             class: "outline-none",
           },
@@ -196,7 +243,7 @@ export function NovelEditor({
               <EditorCommandItem
                 key={item.title}
                 value={item.title}
-                onCommand={item.command}
+                onCommand={item.command ?? ((_args) => {})}
                 className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-300 hover:bg-gray-800 aria-selected:bg-gray-800"
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-md border border-gray-700 bg-gray-800 text-xs font-mono text-gray-400">
