@@ -32,7 +32,18 @@ async function getStats() {
       },
     }),
   ]);
-  return { total, published, drafts, recent };
+  return { total, published, drafts, recent } as {
+    total: number;
+    published: number;
+    drafts: number;
+    recent: {
+      id: string;
+      title: string;
+      published: boolean;
+      createdAt: Date;
+      slug: string;
+    }[];
+  };
 }
 
 export default async function DashboardPage() {
