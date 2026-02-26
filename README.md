@@ -171,24 +171,22 @@
 
 ---
 
-## Milestone 7 — Blog Público
+## Milestone 7 — Blog Público ✅
 
-- [ ] Criar lista de posts `app/(public)/blog/page.tsx`
-  - [ ] Grid de cards com capa, título, excerpt, data e tags
-  - [ ] Paginação
-  - [ ] Filtro por tag
-- [ ] Criar página de post individual `app/(public)/blog/[slug]/page.tsx`
-  - [ ] Renderizar conteúdo JSON do Novel como HTML
-  - [ ] Imagem de capa
-  - [ ] Data de publicação formatada
-  - [ ] Tags clicáveis
-  - [ ] Tempo estimado de leitura
-  - [ ] Botões de compartilhamento (Twitter/X, LinkedIn, copiar link)
-  - [ ] Navegação para post anterior e próximo
-- [ ] Estilizar conteúdo do post com `@tailwindcss/typography`
-  ```bash
-  npm install @tailwindcss/typography
-  ```
+- [x] Criar lista de posts `app/(public)/blog/page.tsx`
+  - [x] Grid de cards com capa, título, excerpt, data e tags
+  - [x] Paginação
+  - [x] Filtro por tag
+- [x] Criar página de post individual `app/(public)/blog/[slug]/page.tsx`
+  - [x] Renderizar conteúdo JSON do Novel como HTML (`lib/tiptap.ts`)
+  - [x] Imagem de capa
+  - [x] Data de publicação formatada
+  - [x] Tags clicáveis
+  - [x] Tempo estimado de leitura
+  - [x] Botões de compartilhamento (Twitter/X, LinkedIn, copiar link)
+  - [x] Navegação para post anterior e próximo
+- [x] Estilizar conteúdo do post com `@tailwindcss/typography` (já configurado)
+- [x] Build ✅ limpo — commit `[develop f0450a1]`
 
 ---
 
@@ -286,7 +284,7 @@
 | 4 — Painel Administrativo        | ✅ Concluído    |
 | 5 — Editor de Posts              | ✅ Concluído    |
 | 6 — Portfolio (Área Pública)     | ✅ Concluído    |
-| 7 — Blog Público                 | ⬜ Não iniciado |
+| 7 — Blog Público                 | ✅ Concluído    |
 | 8 — SEO                          | ⬜ Não iniciado |
 | 9 — Performance e Acessibilidade | ⬜ Não iniciado |
 | 10 — Deploy e CI/CD              | ⬜ Não iniciado |
