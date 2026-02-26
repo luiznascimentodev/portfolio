@@ -71,24 +71,39 @@
 
 ---
 
-## Milestone 4 — Painel Administrativo (Admin)
+## Milestone 4 — Painel Administrativo (Admin) ✅
 
-- [ ] Criar layout da área admin `app/(admin)/layout.tsx`
-  - [ ] Sidebar responsiva com navegação
-  - [ ] Header com nome do usuário e botão de logout
-  - [ ] Layout adaptado para mobile (menu hamburguer)
-- [ ] Criar dashboard `app/(admin)/dashboard/page.tsx`
-  - [ ] Cards com total de posts, posts publicados e rascunhos
-- [ ] Criar lista de posts `app/(admin)/posts/page.tsx`
-  - [ ] Tabela com título, status (publicado/rascunho), data
-  - [ ] Botões de editar, publicar/despublicar e excluir
-  - [ ] Ordenação por data
-- [ ] Criar APIs de CRUD de posts
-  - [ ] `GET /api/posts` — listar posts
-  - [ ] `POST /api/posts` — criar post
-  - [ ] `PATCH /api/posts/[id]` — editar post
-  - [ ] `DELETE /api/posts/[id]` — excluir post
-  - [ ] `PATCH /api/posts/[id]/publish` — publicar/despublicar
+> ⚠️ Reestruturação de routing: páginas admin movidas para `app/(admin)/admin/` para que as URLs fiquem em `/admin/*` (compatível com o middleware).
+
+- [x] Criar `app/(admin)/admin/layout.tsx` — layout completo da área admin
+  - [x] Sidebar fixa no desktop (largura 224px, logo, navegação, rodapé com email)
+  - [x] Header mobile com email do usuário e botão de logout
+  - [x] Layout adaptado para mobile (menu hamburguer via `Sheet` do Shadcn)
+  - [x] Auth check server-side (redundância ao middleware)
+- [x] Criar `components/admin/SidebarNav.tsx` — navegação com active state por rota
+- [x] Criar `components/admin/MobileSidebarToggle.tsx` — Sheet mobile com `usePathname`
+- [x] Criar `app/(admin)/admin/dashboard/page.tsx`
+  - [x] Cards com total de posts, posts publicados e rascunhos
+  - [x] Lista de 5 posts recentes com status
+  - [x] Botão "Novo Post" e link "Ver todos"
+- [x] Criar `app/(admin)/admin/posts/page.tsx` — lista de posts
+  - [x] Tabela com título, slug, status (badge), tags, data de criação, data de publicação
+  - [x] Ordenação por título, criado em, publicado em (via query params)
+  - [x] Estado vazio com link para criar primeiro post
+- [x] Criar `app/(admin)/admin/posts/_components/PostActions.tsx`
+  - [x] Dropdown com Editar, Publicar/Despublicar e Excluir
+  - [x] Dialog de confirmação para exclusão
+  - [x] `useTransition` para feedback de loading
+- [x] Criar `app/(admin)/admin/posts/actions.ts` — server actions (`deletePost`, `togglePublish`) com `revalidatePath`
+- [x] Criar placeholders para Milestone 5: `posts/new/page.tsx` e `posts/[id]/page.tsx`
+- [x] Criar APIs REST de CRUD de posts
+  - [x] `GET /api/posts` — listar posts (com ordenação via query params)
+  - [x] `POST /api/posts` — criar post (gera slug único, calcula readingTime)
+  - [x] `PATCH /api/posts/[id]` — editar post
+  - [x] `DELETE /api/posts/[id]` — excluir post
+  - [x] `PATCH /api/posts/[id]/publish` — publicar/despublicar (toggle)
+- [x] Instalar Shadcn components: `table`, `dropdown-menu`, `dialog`, `sheet`
+- [x] Build ✅ limpo — rotas em `/admin/dashboard`, `/admin/posts`, `/api/posts`
 
 ---
 
@@ -268,7 +283,7 @@
 | 1 — Setup do Projeto             | ✅ Concluído                               |
 | 2 — Banco de Dados e ORM         | ✅ Concluído                               |
 | 3 — Autenticação                 | ✅ Concluído                               |
-| 4 — Painel Administrativo        | ⬜ Não iniciado                            |
+| 4 — Painel Administrativo        | ✅ Concluído                               |
 | 5 — Editor de Posts              | ⬜ Não iniciado                            |
 | 6 — Portfolio (Área Pública)     | 🟡 Componentes prontos (migração pendente) |
 | 7 — Blog Público                 | ⬜ Não iniciado                            |
