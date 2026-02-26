@@ -13,20 +13,19 @@
 
 ---
 
-## Milestone 1 — Setup do Projeto
+## Milestone 1 — Setup do Projeto ✅
 
-- [ ] Criar novo projeto Next.js 15 com TypeScript
-  ```bash
-  npx create-next-app@latest portfolio --typescript --tailwind --app --eslint
-  ```
-- [ ] Instalar e configurar Shadcn/ui
-  ```bash
-  npx shadcn@latest init
-  ```
-- [ ] Definir paleta de cores e tema (dark/light) no `tailwind.config`
-- [ ] Criar estrutura base de pastas conforme arquitetura definida
-- [ ] Configurar fonte via `next/font` (ex: Inter)
-- [ ] Commit inicial no GitHub com repositório criado
+- [x] Criar novo projeto Next.js 15 com TypeScript
+- [x] Instalar e configurar Shadcn/ui (button, input, label, card, badge, separator)
+- [x] Definir paleta de cores e tema (dark/light) no `tailwind.config.cjs` — cores originais preservadas (`#10b981`, `#0a0a0a`, `#171717`, etc.)
+- [x] Criar estrutura base de pastas (`app/`, `components/`, `lib/`, `drizzle/`, `hooks/`)
+- [x] Configurar fonte Inter via `next/font/google` em `app/layout.tsx`
+- [x] Criar `Dockerfile` multi-stage (deps → builder → runner)
+- [x] Criar `docker-compose.yml` com Next.js + PostgreSQL local
+- [x] Criar `.env.local.example` com todas as variáveis necessárias
+- [x] Criar `lib/utils.ts` com `cn()`, `slugify()`, `readingTime()` e `formatDate()`
+- [x] Pasta `src/` (componentes Vite) preservada como referência para o Milestone 6
+- [x] Commit inicial na branch `develop`
 
 ---
 
@@ -264,7 +263,7 @@
 
 | Milestone                        | Status                                     |
 | -------------------------------- | ------------------------------------------ |
-| 1 — Setup do Projeto             | ⬜ Não iniciado                            |
+| 1 — Setup do Projeto             | ✅ Concluído                               |
 | 2 — Banco de Dados e ORM         | ⬜ Não iniciado                            |
 | 3 — Autenticação                 | ⬜ Não iniciado                            |
 | 4 — Painel Administrativo        | ⬜ Não iniciado                            |
