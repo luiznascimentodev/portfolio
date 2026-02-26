@@ -8,7 +8,10 @@ const inter = Inter({
   display: "swap",
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "Luiz Felippe — Desenvolvedor Full Stack",
     template: "%s | Luiz Felippe",
@@ -29,11 +32,21 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
+    url: BASE_URL,
     siteName: "Luiz Felippe — Desenvolvedor Full Stack",
+    images: [
+      {
+        url: `/api/og`,
+        width: 1200,
+        height: 630,
+        alt: "Luiz Felippe — Desenvolvedor Full Stack",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     creator: "@luiznascimentodev",
+    images: [`/api/og`],
   },
   robots: {
     index: true,

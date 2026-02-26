@@ -6,6 +6,10 @@ import { db } from "@/lib/db";
 import { formatDate } from "@/lib/utils";
 import { tiptapToHtml } from "@/lib/tiptap";
 import { ShareButtons } from "@/components/portfolio/blog/ShareButtons";
+import { BlogPostingJsonLd } from "@/components/seo/BlogPostingJsonLd";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
 
 interface PostPageProps {
   params: Promise<{ slug: string }>;
@@ -24,21 +28,30 @@ export async function generateMetadata({
 
   if (!post) return {};
 
+  const postUrl = `${BASE_URL}/blog/${slug}`;
+  const ogImageUrl = `/api/og?type=post&title=${encodeURIComponent(post.title)}${post.excerpt ? `&description=${encodeURIComponent(post.excerpt)}` : ""}`;
+
   return {
     title: post.title,
     description: post.excerpt ?? undefined,
     keywords: post.tags,
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt ?? undefined,
       type: "article",
-      images: post.coverImage ? [{ url: post.coverImage }] : [],
+      url: postUrl,
+      images: post.coverImage
+        ? [{ url: post.coverImage, width: 1200, height: 630, alt: post.title }]
+        : [{ url: ogImageUrl, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt ?? undefined,
-      images: post.coverImage ? [post.coverImage] : [],
+      images: post.coverImage ? [post.coverImage] : [ogImageUrl],
     },
   };
 }
@@ -78,6 +91,24 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white dark:from-black dark:via-gray-950 dark:to-black">
+      {/* JSON-LD */}
+      <BlogPostingJsonLd
+        title={post.title}
+        slug={post.slug}
+        description={post.excerpt}
+        coverImage={post.coverImage}
+        publishedAt={post.publishedAt}
+        updatedAt={post.updatedAt}
+        tags={post.tags}
+        readingTime={post.readingTime}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
+      />
       {/* Hero / Cover */}
       {post.coverImage && (
         <div className="relative w-full h-72 sm:h-96 lg:h-[480px]">

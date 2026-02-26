@@ -2,13 +2,41 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { db } from "@/lib/db";
 import { BlogCard } from "@/components/portfolio/blog/BlogCard";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 
 const POSTS_PER_PAGE = 9;
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
     "Artigos sobre desenvolvimento web, React, Next.js, TypeScript e muito mais.",
+  alternates: {
+    canonical: `${BASE_URL}/blog`,
+  },
+  openGraph: {
+    title: "Blog | Luiz Felippe",
+    description:
+      "Artigos sobre desenvolvimento web, React, Next.js, TypeScript e muito mais.",
+    url: `${BASE_URL}/blog`,
+    images: [
+      {
+        url: `/api/og?title=Blog&description=Artigos+sobre+desenvolvimento+web`,
+        width: 1200,
+        height: 630,
+        alt: "Blog | Luiz Felippe",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Luiz Felippe",
+    description:
+      "Artigos sobre desenvolvimento web, React, Next.js, TypeScript e muito mais.",
+    images: [
+      `/api/og?title=Blog&description=Artigos+sobre+desenvolvimento+web`,
+    ],
+  },
 };
 
 interface BlogPageProps {
@@ -52,6 +80,12 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-white dark:from-black dark:via-gray-950 dark:to-black">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ]}
+      />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         {/* Header */}
         <div className="mb-12">
