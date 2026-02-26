@@ -10,6 +10,7 @@ export interface Translation {
     projects: string;
     contact: string;
     skills: string;
+    blog: string;
   };
   about: {
     title: string;

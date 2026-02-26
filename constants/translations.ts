@@ -7,6 +7,7 @@ export const translations: Record<"pt" | "en", Translation> = {
       projects: "Projetos",
       contact: "Contato",
       skills: "Habilidades",
+      blog: "Blog",
     },
     about: {
       title: "Sobre Mim",
@@ -83,6 +84,7 @@ export const translations: Record<"pt" | "en", Translation> = {
       projects: "Projects",
       contact: "Contact",
       skills: "Skills",
+      blog: "Blog",
     },
     about: {
       title: "About Me",
