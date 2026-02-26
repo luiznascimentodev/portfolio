@@ -1,0 +1,56 @@
+services:
+  # ── Aplicação Next.js ──────────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: deps          # em dev usa apenas o estágio de deps
+    image: portfolio-app
+    container_name: portfolio-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app              # hot-reload em desenvolvimento
+      - /app/node_modules   # evita sobrescrever node_modules do container
+      - /app/.next          # cache do Next.js
+    command: npm run dev
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+    env_file:
+      - .env.local
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - portfolio-net
+
+  # ── PostgreSQL local (dev) ─────────────────────────────────────────────────
+  # Em produção usa Neon.tech — este container é apenas para desenvolvimento
+  db:
+    image: postgres:16-alpine
+    container_name: portfolio-db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-portfolio}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-portfolio}
+      POSTGRES_DB: ${POSTGRES_DB:-portfolio}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-portfolio}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - portfolio-net
+
+volumes:
+  postgres-data:
+
+networks:
+  portfolio-net:
+    driver: bridge

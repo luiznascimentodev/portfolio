@@ -1,0 +1,278 @@
+# Portfolio + Blog — Roadmap Completo
+
+## Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Banco de dados:** PostgreSQL (Neon.tech)
+- **ORM:** Drizzle ORM
+- **Auth:** NextAuth v5 (Auth.js)
+- **Editor:** Novel.js (estilo Notion)
+- **Upload:** Uploadthing
+- **UI:** Tailwind CSS + Shadcn/ui
+- **Deploy:** Vercel
+
+---
+
+## Milestone 1 — Setup do Projeto
+
+- [ ] Criar novo projeto Next.js 15 com TypeScript
+  ```bash
+  npx create-next-app@latest portfolio --typescript --tailwind --app --eslint
+  ```
+- [ ] Instalar e configurar Shadcn/ui
+  ```bash
+  npx shadcn@latest init
+  ```
+- [ ] Definir paleta de cores e tema (dark/light) no `tailwind.config`
+- [ ] Criar estrutura base de pastas conforme arquitetura definida
+- [ ] Configurar fonte via `next/font` (ex: Inter)
+- [ ] Commit inicial no GitHub com repositório criado
+
+---
+
+## Milestone 2 — Banco de Dados e ORM
+
+- [ ] Criar conta e projeto no [Neon.tech](https://neon.tech) (PostgreSQL serverless)
+- [ ] Instalar Drizzle ORM
+  ```bash
+  npm install drizzle-orm @neondatabase/serverless
+  npm install -D drizzle-kit
+  ```
+- [ ] Configurar `lib/db/index.ts` com a conexão ao Neon
+- [ ] Criar schema das tabelas em `lib/db/schema.ts`
+  - Tabela `posts` (id, title, slug, content, excerpt, cover_image, published, tags, created_at, updated_at)
+  - Tabela `users` (id, email, password, created_at)
+- [ ] Configurar `drizzle.config.ts`
+- [ ] Rodar primeira migration
+  ```bash
+  npx drizzle-kit generate
+  npx drizzle-kit migrate
+  ```
+- [ ] Popular banco com usuário admin inicial (seed script)
+
+---
+
+## Milestone 3 — Autenticação
+
+- [ ] Instalar NextAuth v5
+  ```bash
+  npm install next-auth@beta bcryptjs
+  npm install -D @types/bcryptjs
+  ```
+- [ ] Configurar `lib/auth.ts` com provider Credentials (email + senha)
+- [ ] Criar rota `app/api/auth/[...nextauth]/route.ts`
+- [ ] Criar página de login `app/(admin)/login/page.tsx`
+  - [ ] Formulário com email e senha
+  - [ ] Validação client-side
+  - [ ] Feedback de erro de autenticação
+- [ ] Configurar `middleware.ts` para proteger todas as rotas `/admin/*`
+- [ ] Testar fluxo completo de login e logout
+
+---
+
+## Milestone 4 — Painel Administrativo (Admin)
+
+- [ ] Criar layout da área admin `app/(admin)/layout.tsx`
+  - [ ] Sidebar responsiva com navegação
+  - [ ] Header com nome do usuário e botão de logout
+  - [ ] Layout adaptado para mobile (menu hamburguer)
+- [ ] Criar dashboard `app/(admin)/dashboard/page.tsx`
+  - [ ] Cards com total de posts, posts publicados e rascunhos
+- [ ] Criar lista de posts `app/(admin)/posts/page.tsx`
+  - [ ] Tabela com título, status (publicado/rascunho), data
+  - [ ] Botões de editar, publicar/despublicar e excluir
+  - [ ] Ordenação por data
+- [ ] Criar APIs de CRUD de posts
+  - [ ] `GET /api/posts` — listar posts
+  - [ ] `POST /api/posts` — criar post
+  - [ ] `PATCH /api/posts/[id]` — editar post
+  - [ ] `DELETE /api/posts/[id]` — excluir post
+  - [ ] `PATCH /api/posts/[id]/publish` — publicar/despublicar
+
+---
+
+## Milestone 5 — Editor de Posts
+
+- [ ] Instalar Novel.js
+  ```bash
+  npm install novel
+  ```
+- [ ] Instalar Uploadthing para upload de imagens
+  ```bash
+  npm install uploadthing @uploadthing/react
+  ```
+- [ ] Criar componente `components/admin/Editor.tsx` com Novel
+- [ ] Configurar rota de upload `app/api/uploadthing/route.ts`
+- [ ] Criar página de novo post `app/(admin)/posts/new/page.tsx`
+  - [ ] Campo de título
+  - [ ] Upload de imagem de capa
+  - [ ] Editor Novel (corpo do post)
+  - [ ] Campo de tags (input com chips)
+  - [ ] Campo de excerpt (resumo)
+  - [ ] Geração automática de slug a partir do título
+  - [ ] Botão salvar rascunho
+  - [ ] Botão publicar
+  - [ ] Auto-save a cada 3 segundos
+- [ ] Criar página de editar post `app/(admin)/posts/[id]/page.tsx`
+  - [ ] Carregar dados existentes no editor
+  - [ ] Mesmos recursos da criação
+- [ ] Testar fluxo completo no mobile (criar e editar post pelo celular)
+
+---
+
+## Milestone 6 — Portfolio (Área Pública)
+
+> ✅ Os componentes já estão desenvolvidos no projeto Vite atual. Esta milestone cobre apenas a adaptação para Next.js — sem reescrita.
+
+**Adaptações necessárias em todos os componentes:**
+
+- Adicionar diretiva `"use client"` nos componentes que usam hooks (`useState`, `useContext`, etc.)
+- Substituir `<img>` por `next/image` onde aplicável
+- Ajustar imports de assets (`avatar.webp` via `public/` ou `next/image`)
+
+**Contextos:**
+
+- [ ] Migrar `ThemeContext.tsx` → ajustar `localStorage` com verificação de `typeof window` (SSR safe)
+- [ ] Migrar `LanguageContext.tsx` → idem
+- [ ] Migrar `translations.ts` e `types/index.ts` sem alterações
+
+**Componentes (copiar e adaptar):**
+
+- [ ] `Sidebar.tsx` → adicionar `"use client"`, trocar `<img>` por `next/image`
+- [ ] `Card.tsx` → verificar necessidade de `"use client"`
+- [ ] `About.tsx` → copiar sem alterações (usa apenas contexto)
+- [ ] `Contact.tsx` → copiar sem alterações
+- [ ] `Projects.tsx` → copiar sem alterações
+- [ ] `Skills.tsx` → copiar sem alterações
+
+**Página e layout:**
+
+- [ ] Criar `app/(public)/page.tsx` replicando a lógica do `App.tsx` atual
+- [ ] Criar `app/(public)/layout.tsx` com os providers (`ThemeProvider`, `LanguageProvider`)
+- [ ] Mover `avatar.webp` para a pasta `public/` do Next.js
+- [ ] Validar responsividade em mobile, tablet e desktop
+- [ ] Conferir dark/light mode funcionando corretamente com Next.js
+
+---
+
+## Milestone 7 — Blog Público
+
+- [ ] Criar lista de posts `app/(public)/blog/page.tsx`
+  - [ ] Grid de cards com capa, título, excerpt, data e tags
+  - [ ] Paginação
+  - [ ] Filtro por tag
+- [ ] Criar página de post individual `app/(public)/blog/[slug]/page.tsx`
+  - [ ] Renderizar conteúdo JSON do Novel como HTML
+  - [ ] Imagem de capa
+  - [ ] Data de publicação formatada
+  - [ ] Tags clicáveis
+  - [ ] Tempo estimado de leitura
+  - [ ] Botões de compartilhamento (Twitter/X, LinkedIn, copiar link)
+  - [ ] Navegação para post anterior e próximo
+- [ ] Estilizar conteúdo do post com `@tailwindcss/typography`
+  ```bash
+  npm install @tailwindcss/typography
+  ```
+
+---
+
+## Milestone 8 — SEO
+
+- [ ] Configurar `Metadata` do Next.js em todas as páginas
+  - [ ] `title`, `description`, `keywords` na home
+  - [ ] `title` e `description` dinâmicos por post (`generateMetadata`)
+- [ ] Configurar Open Graph e Twitter Cards
+  - [ ] Imagem OG da home (estática)
+  - [ ] Imagem OG dinâmica por post com `next/og` (`app/api/og/route.tsx`)
+- [ ] Criar `sitemap.xml` dinâmico (`app/sitemap.ts`)
+  - [ ] Incluir home, /blog e todos os posts publicados
+- [ ] Criar `robots.txt` (`app/robots.ts`)
+  - [ ] Bloquear rotas `/admin/*`
+- [ ] Configurar URL canônica em todas as páginas
+- [ ] Instalar e configurar dados estruturados (JSON-LD)
+  - [ ] `Person` schema na home
+  - [ ] `BlogPosting` schema em cada post
+  - [ ] `BreadcrumbList` schema no blog
+- [ ] Garantir que posts tenham slug amigável (sem acentos, sem espaços)
+- [ ] Adicionar alt text em todas as imagens
+- [ ] Validar com Google Rich Results Test
+
+---
+
+## Milestone 9 — Performance e Acessibilidade
+
+- [ ] Todas as páginas públicas com SSG ou ISR (sem client-side fetch)
+- [ ] Configurar ISR nos posts (`revalidate: 60`)
+- [ ] Otimizar Web Vitals (LCP, CLS, FID)
+  - [ ] Imagens com `next/image` e `priority` no LCP
+  - [ ] Evitar layout shift em fontes com `next/font`
+  - [ ] Lazy load em componentes pesados
+- [ ] Testar score no Lighthouse (meta: 90+ em todas as categorias)
+- [ ] Garantir contraste de cores adequado (WCAG AA)
+- [ ] Navegar todo o site pelo teclado (foco visível)
+- [ ] Adicionar `aria-label` em botões e links sem texto
+
+---
+
+## Milestone 10 — Deploy e CI/CD
+
+- [ ] Criar conta na Vercel e conectar ao repositório GitHub
+- [ ] Configurar variáveis de ambiente na Vercel
+  ```
+  DATABASE_URL=
+  NEXTAUTH_SECRET=
+  NEXTAUTH_URL=
+  UPLOADTHING_SECRET=
+  UPLOADTHING_APP_ID=
+  ```
+- [ ] Configurar domínio customizado (ex: seudominio.com.br)
+  - [ ] Configurar DNS
+  - [ ] HTTPS automático pela Vercel
+- [ ] Configurar deploy automático no push para `main`
+- [ ] Criar branch `develop` para desenvolvimento
+- [ ] Verificar se as migrations rodam corretamente no ambiente de produção
+- [ ] Testar o fluxo completo em produção (criar post → visualizar no blog)
+
+---
+
+## Milestone 11 — Indexação e Descoberta
+
+- [ ] Cadastrar o site no [Google Search Console](https://search.google.com/search-console)
+- [ ] Submeter o `sitemap.xml` ao Google Search Console
+- [ ] Cadastrar o site no [Bing Webmaster Tools](https://www.bing.com/webmasters)
+- [ ] Verificar se o Google está indexando as páginas
+- [ ] Configurar Google Analytics 4 ou Plausible Analytics (privacy-friendly)
+- [ ] Compartilhar o blog nas redes sociais para gerar primeiros backlinks
+- [ ] Adicionar link do blog no perfil do LinkedIn e GitHub
+
+---
+
+## Milestone 12 — Polimento Final
+
+- [ ] Revisar todos os textos e conteúdos do portfólio
+- [ ] Criar ao menos 2 posts iniciais no blog (conteúdo real)
+- [ ] Testar em dispositivos reais (iPhone, Android, tablet)
+- [ ] Testar em Chrome, Firefox e Safari
+- [ ] Verificar todos os links (nenhum quebrado)
+- [ ] Revisar mensagens de erro e estados vazios (lista de posts vazia, etc.)
+- [ ] Adicionar favicon e ícones PWA (`app/icon.tsx` ou arquivos estáticos)
+- [ ] Fazer leitura final do README e atualizar se necessário
+
+---
+
+## Progresso Geral
+
+| Milestone                        | Status                                     |
+| -------------------------------- | ------------------------------------------ |
+| 1 — Setup do Projeto             | ⬜ Não iniciado                            |
+| 2 — Banco de Dados e ORM         | ⬜ Não iniciado                            |
+| 3 — Autenticação                 | ⬜ Não iniciado                            |
+| 4 — Painel Administrativo        | ⬜ Não iniciado                            |
+| 5 — Editor de Posts              | ⬜ Não iniciado                            |
+| 6 — Portfolio (Área Pública)     | 🟡 Componentes prontos (migração pendente) |
+| 7 — Blog Público                 | ⬜ Não iniciado                            |
+| 8 — SEO                          | ⬜ Não iniciado                            |
+| 9 — Performance e Acessibilidade | ⬜ Não iniciado                            |
+| 10 — Deploy e CI/CD              | ⬜ Não iniciado                            |
+| 11 — Indexação e Descoberta      | ⬜ Não iniciado                            |
+| 12 — Polimento Final             | ⬜ Não iniciado                            |

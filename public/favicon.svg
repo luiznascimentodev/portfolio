@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <!-- Background circle -->
+  <circle cx="128" cy="128" r="128" fill="#6366f1"/>
+  
+  <!-- Code brackets symbol -->
+  <g stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left bracket -->
+    <path d="M 90 80 L 60 128 L 90 176"/>
+    
+    <!-- Right bracket -->
+    <path d="M 166 80 L 196 128 L 166 176"/>
+    
+    <!-- Middle slash -->
+    <line x1="140" y1="70" x2="116" y2="186"/>
+  </g>
+</svg>
