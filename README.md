@@ -243,10 +243,10 @@
 - [ ] Configurar variáveis de ambiente na Vercel
   ```
   DATABASE_URL=
+  DIRECT_URL=
   NEXTAUTH_SECRET=
   NEXTAUTH_URL=
-  UPLOADTHING_SECRET=
-  UPLOADTHING_APP_ID=
+  UPLOADTHING_TOKEN=
   ```
 - [ ] Configurar domínio customizado (ex: seudominio.com.br)
   - [ ] Configurar DNS

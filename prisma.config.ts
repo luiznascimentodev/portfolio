@@ -1,5 +1,6 @@
 // Prisma 7 config — configura conexão para Migrate e Studio
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
 import { defineConfig } from "prisma/config";
 
 export default defineConfig({
