@@ -8,7 +8,9 @@ export default function PublicLayout({
 }) {
   return (
     <ThemeProvider>
-      <LanguageProvider>{children}</LanguageProvider>
+      <LanguageProvider>
+        <main id="main-content">{children}</main>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

@@ -11,6 +11,9 @@ import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
 
+// ISR: revalida o post a cada 60 segundos
+export const revalidate = 60;
+
 interface PostPageProps {
   params: Promise<{ slug: string }>;
 }

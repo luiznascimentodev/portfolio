@@ -62,6 +62,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
+        {/* Skip-to-content para navegação por teclado (WCAG 2.4.1) */}
+        <a href="#main-content" className="skip-to-content">
+          Ir para o conteúdo principal
+        </a>
         {children}
       </body>
     </html>

@@ -55,8 +55,27 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark;
     @apply font-sans antialiased;
+  }
+
+  /* Skip-to-content link for keyboard navigation */
+  .skip-to-content {
+    @apply absolute -top-full left-2 z-50 px-4 py-2 rounded-b-lg text-sm font-medium;
+    @apply bg-primary text-white shadow-lg;
+    @apply focus:top-0 focus:outline-none;
+    transition: top 0.1s ease;
+  }
+
+  /* Focus ring global — accessible, visible for keyboard users */
+  :focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }

@@ -7,6 +7,9 @@ import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 const POSTS_PER_PAGE = 9;
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
 
+// ISR: revalida a cada 60 segundos
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Blog",
   description:
@@ -119,7 +122,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
         {/* Tag Filter */}
         {allTags.length > 0 && (
-          <div className="mb-10 flex flex-wrap gap-2">
+          <nav
+            aria-label="Filtro por tags"
+            className="mb-10 flex flex-wrap gap-2"
+          >
             <Link
               href="/blog"
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border ${
@@ -134,6 +140,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               <Link
                 key={t}
                 href={`/blog?tag=${encodeURIComponent(t)}`}
+                aria-current={tag === t ? "true" : undefined}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   tag === t
                     ? "bg-primary text-white border-primary shadow-lg shadow-primary/25"
@@ -143,7 +150,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 {t}
               </Link>
             ))}
-          </div>
+          </nav>
         )}
 
         {/* Posts Grid */}
@@ -188,10 +195,14 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="mt-12 flex items-center justify-center gap-2">
+              <nav
+                aria-label="Paginação"
+                className="mt-12 flex items-center justify-center gap-2"
+              >
                 {currentPage > 1 && (
                   <Link
                     href={`/blog?${tag ? `tag=${encodeURIComponent(tag)}&` : ""}page=${currentPage - 1}`}
+                    aria-label="Página anterior"
                     className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-sm text-gray-700 dark:text-gray-300 hover:border-primary/50 transition-colors"
                   >
                     <svg
@@ -217,6 +228,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                       <Link
                         key={p}
                         href={`/blog?${tag ? `tag=${encodeURIComponent(tag)}&` : ""}page=${p}`}
+                        aria-label={`Página ${p}`}
+                        aria-current={p === currentPage ? "page" : undefined}
                         className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-medium transition-all duration-200 ${
                           p === currentPage
                             ? "bg-primary text-white shadow-lg shadow-primary/25"
@@ -232,6 +245,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 {currentPage < totalPages && (
                   <Link
                     href={`/blog?${tag ? `tag=${encodeURIComponent(tag)}&` : ""}page=${currentPage + 1}`}
+                    aria-label="Próxima página"
                     className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-sm text-gray-700 dark:text-gray-300 hover:border-primary/50 transition-colors"
                   >
                     Próximo
@@ -250,11 +264,15 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                     </svg>
                   </Link>
                 )}
-              </div>
+              </nav>
             )}
 
             {/* Count */}
-            <p className="mt-6 text-center text-sm text-gray-500 dark:text-gray-500">
+            <p
+              role="status"
+              aria-live="polite"
+              className="mt-6 text-center text-sm text-gray-500 dark:text-gray-500"
+            >
               {total} {total === 1 ? "post" : "posts"}
               {tag ? ` com a tag "${tag}"` : " publicados"}
             </p>
