@@ -1,0 +1,39 @@
+// Prisma Schema — Portfolio + Blog
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // URL configurada em prisma.config.ts (Prisma 7)
+}
+
+// ─── Usuário admin (área de gerenciamento do blog) ────────────────────────────
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // hash bcrypt
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
+// ─── Post do blog ─────────────────────────────────────────────────────────────
+model Post {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  content     String    @db.Text  // JSON do Novel editor
+  excerpt     String?   @db.Text
+  coverImage  String?   @map("cover_image")
+  published   Boolean   @default(false)
+  tags        String[]
+  readingTime Int       @default(0) @map("reading_time") // minutos
+  publishedAt DateTime? @map("published_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@map("posts")
+}

@@ -1,12 +1,12 @@
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
-})
+});
 
 export const metadata: Metadata = {
   title: {
@@ -15,7 +15,15 @@ export const metadata: Metadata = {
   },
   description:
     "Portfolio e blog de Luiz Felippe Nascimento, desenvolvedor Full Stack especializado em React, Next.js e TypeScript.",
-  keywords: ["desenvolvedor", "full stack", "react", "next.js", "typescript", "portfolio", "blog"],
+  keywords: [
+    "desenvolvedor",
+    "full stack",
+    "react",
+    "next.js",
+    "typescript",
+    "portfolio",
+    "blog",
+  ],
   authors: [{ name: "Luiz Felippe Nascimento" }],
   creator: "Luiz Felippe Nascimento",
   openGraph: {
@@ -31,12 +39,12 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
@@ -44,5 +52,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  )
+  );
 }

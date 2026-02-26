@@ -4,16 +4,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: deps          # em dev usa apenas o estágio de deps
+      target: deps # em dev usa apenas o estágio de deps
     image: portfolio-app
     container_name: portfolio-app
     restart: unless-stopped
     ports:
       - "3000:3000"
     volumes:
-      - .:/app              # hot-reload em desenvolvimento
-      - /app/node_modules   # evita sobrescrever node_modules do container
-      - /app/.next          # cache do Next.js
+      - .:/app # hot-reload em desenvolvimento
+      - /app/node_modules # evita sobrescrever node_modules do container
+      - /app/.next # cache do Next.js
     command: npm run dev
     environment:
       - NODE_ENV=development

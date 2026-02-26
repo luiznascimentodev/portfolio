@@ -1,4 +1,4 @@
-import type { NextConfig } from "next"
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Necessário para o Dockerfile multi-stage funcionar corretamente
@@ -11,6 +11,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
