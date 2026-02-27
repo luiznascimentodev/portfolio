@@ -129,76 +129,78 @@ export default async function PostsPage({
               </TableRow>
             </TableHeader>
             <TableBody>
-              {posts.map((post) => (
-                <TableRow
-                  key={post.id}
-                  className="border-gray-800 hover:bg-gray-800/50"
-                >
-                  {/* Título */}
-                  <TableCell className="max-w-xs font-medium text-white">
-                    <div>
-                      <p className="truncate">{post.title}</p>
-                      <p className="mt-0.5 truncate text-xs text-gray-500">
-                        /{post.slug}
-                      </p>
-                    </div>
-                  </TableCell>
+              {posts.map(
+                (post: Awaited<ReturnType<typeof getPosts>>[number]) => (
+                  <TableRow
+                    key={post.id}
+                    className="border-gray-800 hover:bg-gray-800/50"
+                  >
+                    {/* Título */}
+                    <TableCell className="max-w-xs font-medium text-white">
+                      <div>
+                        <p className="truncate">{post.title}</p>
+                        <p className="mt-0.5 truncate text-xs text-gray-500">
+                          /{post.slug}
+                        </p>
+                      </div>
+                    </TableCell>
 
-                  {/* Status */}
-                  <TableCell>
-                    <Badge
-                      variant="secondary"
-                      className={
-                        post.published
-                          ? "bg-primary/15 text-primary hover:bg-primary/25"
-                          : "bg-gray-800 text-gray-400 hover:bg-gray-700"
-                      }
-                    >
-                      {post.published ? "Publicado" : "Rascunho"}
-                    </Badge>
-                  </TableCell>
+                    {/* Status */}
+                    <TableCell>
+                      <Badge
+                        variant="secondary"
+                        className={
+                          post.published
+                            ? "bg-primary/15 text-primary hover:bg-primary/25"
+                            : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                        }
+                      >
+                        {post.published ? "Publicado" : "Rascunho"}
+                      </Badge>
+                    </TableCell>
 
-                  {/* Tags */}
-                  <TableCell className="hidden sm:table-cell">
-                    <div className="flex flex-wrap gap-1">
-                      {post.tags.slice(0, 2).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded bg-gray-800 px-1.5 py-0.5 text-xs text-gray-400"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {post.tags.length > 2 && (
-                        <span className="text-xs text-gray-500">
-                          +{post.tags.length - 2}
-                        </span>
-                      )}
-                    </div>
-                  </TableCell>
+                    {/* Tags */}
+                    <TableCell className="hidden sm:table-cell">
+                      <div className="flex flex-wrap gap-1">
+                        {post.tags.slice(0, 2).map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded bg-gray-800 px-1.5 py-0.5 text-xs text-gray-400"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {post.tags.length > 2 && (
+                          <span className="text-xs text-gray-500">
+                            +{post.tags.length - 2}
+                          </span>
+                        )}
+                      </div>
+                    </TableCell>
 
-                  {/* Criado em */}
-                  <TableCell className="hidden whitespace-nowrap text-sm text-gray-400 md:table-cell">
-                    {formatDate(post.createdAt.toISOString())}
-                  </TableCell>
+                    {/* Criado em */}
+                    <TableCell className="hidden whitespace-nowrap text-sm text-gray-400 md:table-cell">
+                      {formatDate(post.createdAt.toISOString())}
+                    </TableCell>
 
-                  {/* Publicado em */}
-                  <TableCell className="hidden whitespace-nowrap text-sm text-gray-400 lg:table-cell">
-                    {post.publishedAt
-                      ? formatDate(post.publishedAt.toISOString())
-                      : "—"}
-                  </TableCell>
+                    {/* Publicado em */}
+                    <TableCell className="hidden whitespace-nowrap text-sm text-gray-400 lg:table-cell">
+                      {post.publishedAt
+                        ? formatDate(post.publishedAt.toISOString())
+                        : "—"}
+                    </TableCell>
 
-                  {/* Ações */}
-                  <TableCell>
-                    <PostActions
-                      id={post.id}
-                      title={post.title}
-                      published={post.published}
-                    />
-                  </TableCell>
-                </TableRow>
-              ))}
+                    {/* Ações */}
+                    <TableCell>
+                      <PostActions
+                        id={post.id}
+                        title={post.title}
+                        published={post.published}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ),
+              )}
             </TableBody>
           </Table>
         )}
