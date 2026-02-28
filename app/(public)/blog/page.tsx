@@ -10,24 +10,24 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
 // ISR: revalida a cada 60 segundos
 export const revalidate = 60;
 
-export const metadata: Metadata = {
+eexport const metadata: Metadata = {
   title: "Blog",
   description:
-    "Artigos sobre desenvolvimento web, React, Next.js, TypeScript e muito mais.",
+    "Soluções em automação, eficiência operacional e desenvolvimento web moderno para negócios que buscam escala.", // Ajustado para foco em solução
   alternates: {
     canonical: `${BASE_URL}/blog`,
   },
   openGraph: {
     title: "Blog | Luiz Felippe",
     description:
-      "Artigos sobre desenvolvimento web, React, Next.js, TypeScript e muito mais.",
+      "Transformando tecnologia em vantagem competitiva através de automação de processos e sistemas modernos.", // Ajustado para ser mais chamativo em redes sociais
     url: `${BASE_URL}/blog`,
     images: [
       {
-        url: `/api/og?title=Blog&description=Artigos+sobre+desenvolvimento+web`,
+        url: `/api/og?title=Blog&description=Tecnologia+e+Eficiência+para+Negócios`, // Descrição da imagem OG mais estratégica
         width: 1200,
         height: 630,
-        alt: "Blog | Luiz Felippe",
+        alt: "Blog | Luiz Felippe - Tecnologia e Automação",
       },
     ],
   },
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Blog | Luiz Felippe",
     description:
-      "Artigos sobre desenvolvimento web, React, Next.js, TypeScript e muito mais.",
+      "Artigos sobre como transformar tecnologia em eficiência e automação de processos.",
     images: [
-      `/api/og?title=Blog&description=Artigos+sobre+desenvolvimento+web`,
+      `/api/og?title=Blog&description=Tecnologia+e+Eficiência+para+Negócios`,
     ],
   },
 };
@@ -128,7 +128,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             Blog
           </h1>
           <p className="mt-3 text-lg text-gray-600 dark:text-gray-400">
-            Artigos sobre desenvolvimento web, tecnologia e carreira.
+            Artigos sobre como transformar tecnologia em eficiência, automação de processos e soluções modernas para negócios escaláveis.
           </p>
         </div>
 
