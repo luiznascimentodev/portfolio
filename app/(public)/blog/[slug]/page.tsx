@@ -14,6 +14,21 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
 // ISR: revalida o post a cada 60 segundos
 export const revalidate = 60;
 
+interface PostRecord {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt: string | null;
+  coverImage: string | null;
+  published: boolean;
+  tags: string[];
+  readingTime: number;
+  publishedAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 interface PostPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -64,7 +79,7 @@ export async function generateMetadata({
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
 
-  const post = await db.post.findUnique({
+  const post: PostRecord | null = await db.post.findUnique({
     where: { slug, published: true },
   });
 
