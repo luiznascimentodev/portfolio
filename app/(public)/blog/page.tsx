@@ -55,7 +55,19 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     ...(tag ? { tags: { has: tag } } : {}),
   };
 
-  const [posts, total, allPostsTags] = await Promise.all([
+  const [posts, total, allPostsTags]: [
+    {
+      slug: string;
+      title: string;
+      excerpt: string | null;
+      coverImage: string | null;
+      tags: string[];
+      readingTime: number;
+      publishedAt: Date | null;
+    }[],
+    number,
+    { tags: string[] }[],
+  ] = await Promise.all([
     db.post.findMany({
       where,
       orderBy: { publishedAt: "desc" },
