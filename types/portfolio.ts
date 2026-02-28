@@ -15,6 +15,11 @@ export interface Translation {
   about: {
     title: string;
     description: string;
+    pillarsTitle: string;
+    pillars: Array<{
+      title: string;
+      description: string;
+    }>;
     educationTitle: string;
     educationDegree: string;
     educationInstitution: string;

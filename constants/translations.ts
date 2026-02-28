@@ -12,7 +12,25 @@ export const translations: Record<"pt" | "en", Translation> = {
     about: {
       title: "Sobre Mim",
       description:
-        "Desenvolvedor Full Stack especializado em construir experiências digitais excepcionais. Com expertise em Node.js, React e TypeScript, transformo ideias complexas em aplicações escaláveis e seguras que realmente fazem a diferença. Minha jornada inclui o desenvolvimento completo de uma plataforma educacional em produção, onde aplico princípios de arquitetura limpa, testes automatizados e as melhores práticas de segurança. Acredito que bom código não é apenas funcional - é elegante, mantível e centrado no usuário.",
+        "Sou desenvolvedor Full Stack com foco em Node.js, React e TypeScript. Trabalho no desenvolvimento de aplicações web do front ao back, com atenção a performance, acessibilidade e código limpo. Tenho experiência prática com projetos em produção — incluindo uma plataforma educacional que desenvolvo de ponta a ponta — e gosto de ambientes onde precisão técnica e bom senso caminham juntos.",
+      pillarsTitle: "Como trabalho",
+      pillars: [
+        {
+          title: "Código que dura",
+          description:
+            "Estruturo projetos com arquitetura limpa e padrões que facilitam manutenção e evolução no longo prazo.",
+        },
+        {
+          title: "Produto, não só código",
+          description:
+            "Penso em usabilidade, fluxo e impacto antes de escrever a primeira linha. Software precisa resolver problemas reais.",
+        },
+        {
+          title: "Comunicação direta",
+          description:
+            "Prefiro clareza a jargão técnico. Alinho expectativas cedo e comunico impedimentos sem rodeios.",
+        },
+      ],
       educationTitle: "Formação e Idiomas",
       educationDegree: "Análise e Desenvolvimento de Sistemas",
       educationInstitution: "Universidade Positivo",
@@ -22,25 +40,25 @@ export const translations: Record<"pt" | "en", Translation> = {
         { name: "Português", level: "Nativo" },
         { name: "Inglês", level: "Intermediário" },
       ],
-      experienceTitle: "Experiência Profissional",
+      experienceTitle: "Experiência",
       experienceRole:
-        "Desenvolvedor Full Stack | Agência de Desenvolvimento Web",
+        "Desenvolvedor Full Stack · Agência de Desenvolvimento Web",
       experiencePeriod: "2015 – 2018",
       experienceHighlights: [
         {
-          title: "Entrega em Escala",
+          title: "55+ projetos para o setor de construção civil",
           description:
-            "Liderei o desenvolvimento e manutenção de 55+ websites WordPress otimizados para o setor de construção civil, entregando soluções personalizadas e de alta performance.",
+            "Desenvolvi e mantive websites WordPress de alta performance, adaptando cada solução às necessidades específicas de cada cliente.",
         },
         {
-          title: "Arquitetura Customizada",
+          title: "Plugins e temas WordPress customizados",
           description:
-            "Desenvolvi temas e plugins sob medida utilizando PHP avançado, criando funcionalidades que elevaram a experiência do usuário com design 100% responsivo e acessível.",
+            "Construí funcionalidades sob medida em PHP, garantindo design responsivo e acessível em todos os projetos.",
         },
         {
-          title: "Impacto Mensurável",
+          title: "SEO técnico com resultados mensuráveis",
           description:
-            "Implementei estratégias de SEO técnico e on-page que geraram resultados expressivos: +30% de tráfego orgânico e +40% em conversão de leads, impactando diretamente o ROI dos clientes.",
+            "Implementei melhorias de SEO técnico e on-page que resultaram em +30% de tráfego orgânico e +40% em conversão de leads.",
         },
       ],
       experienceTags: [
@@ -89,7 +107,25 @@ export const translations: Record<"pt" | "en", Translation> = {
     about: {
       title: "About Me",
       description:
-        "Full Stack Developer specialized in building exceptional digital experiences. With expertise in Node.js, React, and TypeScript, I transform complex ideas into scalable and secure applications that truly make a difference. My journey includes full-stack development of an educational platform in production, where I apply clean architecture principles, automated testing, and security best practices. I believe that good code isn't just functional - it's elegant, maintainable, and user-centered.",
+        "I'm a Full Stack developer focused on Node.js, React, and TypeScript. I work across the full stack — from interface to API — with attention to performance, accessibility, and clean code. I have hands-on experience with production projects, including an educational platform I build end-to-end, and I thrive in environments where technical precision and pragmatism go hand in hand.",
+      pillarsTitle: "How I work",
+      pillars: [
+        {
+          title: "Code that lasts",
+          description:
+            "I structure projects with clean architecture and standards that make long-term maintenance and growth straightforward.",
+        },
+        {
+          title: "Product, not just code",
+          description:
+            "I think about usability, flow, and impact before writing the first line. Software needs to solve real problems.",
+        },
+        {
+          title: "Straight communication",
+          description:
+            "I prefer clarity over jargon. I align expectations early and surface blockers without beating around the bush.",
+        },
+      ],
       educationTitle: "Education & Languages",
       educationDegree: "Systems Analysis and Development",
       educationInstitution: "Universidade Positivo",
@@ -99,24 +135,24 @@ export const translations: Record<"pt" | "en", Translation> = {
         { name: "Portuguese", level: "Native" },
         { name: "English", level: "Intermediate" },
       ],
-      experienceTitle: "Professional Experience",
-      experienceRole: "Full Stack Developer | Web Development Agency",
+      experienceTitle: "Experience",
+      experienceRole: "Full Stack Developer · Web Development Agency",
       experiencePeriod: "2015 – 2018",
       experienceHighlights: [
         {
-          title: "Scale & Delivery",
+          title: "55+ projects for the construction industry",
           description:
-            "Led development and maintenance of 55+ optimized WordPress websites for the construction industry, delivering customized high-performance solutions.",
+            "Developed and maintained high-performance WordPress websites, tailoring each solution to the specific needs of each client.",
         },
         {
-          title: "Custom Architecture",
+          title: "Custom WordPress plugins and themes",
           description:
-            "Built bespoke themes and plugins using advanced PHP, creating features that elevated user experience with 100% responsive and accessible design.",
+            "Built bespoke features in PHP, ensuring responsive and accessible design across all projects.",
         },
         {
-          title: "Measurable Impact",
+          title: "Technical SEO with measurable results",
           description:
-            "Implemented technical and on-page SEO strategies that generated outstanding results: +30% organic traffic and +40% lead conversion, directly impacting clients' ROI.",
+            "Implemented technical and on-page SEO improvements resulting in +30% organic traffic and +40% lead conversion.",
         },
       ],
       experienceTags: [
