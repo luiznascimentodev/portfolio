@@ -26,7 +26,21 @@ interface SearchParams {
   order?: SortOrder;
 }
 
-async function getPosts(orderBy: SortField, order: SortOrder) {
+interface PostListItem {
+  id: string;
+  title: string;
+  slug: string;
+  published: boolean;
+  tags: string[];
+  readingTime: number;
+  publishedAt: Date | null;
+  createdAt: Date;
+}
+
+async function getPosts(
+  orderBy: SortField,
+  order: SortOrder,
+): Promise<PostListItem[]> {
   return db.post.findMany({
     orderBy:
       orderBy === "title"

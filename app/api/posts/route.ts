@@ -11,11 +11,21 @@ export async function GET(req: NextRequest) {
   }
 
   const { searchParams } = new URL(req.url);
-  const orderBy = searchParams.get("orderBy") ?? "createdAt";
+  const orderBy = (searchParams.get("orderBy") ?? "createdAt") as
+    | "createdAt"
+    | "publishedAt"
+    | "title";
   const order = (searchParams.get("order") ?? "desc") as "asc" | "desc";
 
+  const orderByClause =
+    orderBy === "title"
+      ? { title: order }
+      : orderBy === "publishedAt"
+        ? { publishedAt: order }
+        : { createdAt: order };
+
   const posts = await db.post.findMany({
-    orderBy: { [orderBy]: order },
+    orderBy: orderByClause,
     select: {
       id: true,
       title: true,
