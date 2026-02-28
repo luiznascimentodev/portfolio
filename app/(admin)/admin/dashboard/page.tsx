@@ -74,19 +74,7 @@ export default async function DashboardPage() {
         <Card className="border-gray-800 bg-surface-dark">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-gray-400">
-              Total de Posts
-            </CardTitle>
-            <FileText className="h-4 w-4 text-gray-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-white">{stats.total}</div>
-          </CardContent>
-        </Card>
-
-        <Card className="border-gray-800 bg-surface-dark">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-400">
-              Publicados
+              Posts Publicados
             </CardTitle>
             <BookOpen className="h-4 w-4 text-primary" />
           </CardHeader>
@@ -106,6 +94,18 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-white">{stats.drafts}</div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-gray-800 bg-surface-dark">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-gray-400">
+              Total Geral
+            </CardTitle>
+            <FileText className="h-4 w-4 text-gray-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-white">{stats.total}</div>
           </CardContent>
         </Card>
       </div>

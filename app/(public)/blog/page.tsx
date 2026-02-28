@@ -5,12 +5,13 @@ import { BlogCard } from "@/components/portfolio/blog/BlogCard";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 
 const POSTS_PER_PAGE = 9;
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://luiznascimento.dev.br/";
 
 // ISR: revalida a cada 60 segundos
 export const revalidate = 60;
 
-eexport const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "Blog",
   description:
     "Soluções em automação, eficiência operacional e desenvolvimento web moderno para negócios que buscam escala.", // Ajustado para foco em solução
@@ -128,7 +129,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             Blog
           </h1>
           <p className="mt-3 text-lg text-gray-600 dark:text-gray-400">
-            Artigos sobre como transformar tecnologia em eficiência, automação de processos e soluções modernas para negócios escaláveis.
+            Artigos sobre como transformar tecnologia em eficiência, automação
+            de processos e soluções modernas para negócios escaláveis.
           </p>
         </div>
 

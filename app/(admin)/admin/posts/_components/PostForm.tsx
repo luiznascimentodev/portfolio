@@ -95,8 +95,9 @@ export function PostForm({ initialData }: PostFormProps) {
     startActionTransition(async () => {
       setSaveStatus("saving");
       try {
-        if (isEdit) {
-          await updatePost(initialData!.id, {
+        const existingId = savedIdRef.current;
+        if (existingId) {
+          await updatePost(existingId, {
             title,
             content,
             excerpt,
@@ -123,8 +124,9 @@ export function PostForm({ initialData }: PostFormProps) {
 
   function handlePublish() {
     startActionTransition(async () => {
-      if (isEdit) {
-        await updatePost(initialData!.id, {
+      const existingId = savedIdRef.current;
+      if (existingId) {
+        await updatePost(existingId, {
           title,
           content,
           excerpt,
@@ -147,8 +149,9 @@ export function PostForm({ initialData }: PostFormProps) {
 
   function handleUnpublish() {
     startActionTransition(async () => {
-      if (isEdit) {
-        await updatePost(initialData!.id, {
+      const existingId = savedIdRef.current;
+      if (existingId) {
+        await updatePost(existingId, {
           title,
           content,
           excerpt,
