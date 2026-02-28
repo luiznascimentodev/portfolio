@@ -1,5 +1,4 @@
 import { db } from "@/lib/db";
-import type { Prisma } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -29,7 +28,12 @@ interface SearchParams {
 
 async function getPosts(orderBy: SortField, order: SortOrder) {
   return db.post.findMany({
-    orderBy: { [orderBy]: order } as Prisma.PostOrderByWithRelationInput,
+    orderBy:
+      orderBy === "title"
+        ? { title: order }
+        : orderBy === "publishedAt"
+          ? { publishedAt: order }
+          : { createdAt: order },
     select: {
       id: true,
       title: true,
