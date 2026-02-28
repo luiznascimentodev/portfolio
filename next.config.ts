@@ -7,7 +7,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "utfs.io", // Uploadthing CDN (Milestone 5)
+        hostname: "utfs.io", // Uploadthing CDN (legacy)
+      },
+      {
+        protocol: "https",
+        hostname: "*.ufs.sh", // Uploadthing CDN (v7+)
       },
     ],
   },
