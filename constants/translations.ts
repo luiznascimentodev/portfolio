@@ -12,7 +12,7 @@ export const translations: Record<"pt" | "en", Translation> = {
     about: {
       title: "Sobre Mim",
       description:
-        "Sou desenvolvedor Full Stack com foco em Node.js, React e TypeScript. Trabalho no desenvolvimento de aplicações web do front ao back, com atenção a performance, acessibilidade e código limpo. Tenho experiência prática com projetos em produção — incluindo uma plataforma educacional que desenvolvo de ponta a ponta — e gosto de ambientes onde precisão técnica e bom senso caminham juntos.",
+        "Sou desenvolvedor Full Stack com foco em Node.js, React e TypeScript. Construo aplicações web do front ao back — de interfaces responsivas e performáticas até APIs robustas e integrações com serviços externos. Gosto de projetos onde há espaço para pensar bem a solução antes de executar, e trabalho de forma assíncrona com comunicação direta e entregas previsíveis.",
       pillarsTitle: "Como trabalho",
       pillars: [
         {
@@ -31,43 +31,26 @@ export const translations: Record<"pt" | "en", Translation> = {
             "Prefiro clareza a jargão técnico. Alinho expectativas cedo e comunico impedimentos sem rodeios.",
         },
       ],
-      educationTitle: "Formação e Idiomas",
-      educationDegree: "Análise e Desenvolvimento de Sistemas",
-      educationInstitution: "Universidade Positivo",
-      educationStatus: "Em andamento",
-      languageTitle: "Idiomas",
-      languages: [
-        { name: "Português", level: "Nativo" },
-        { name: "Inglês", level: "Intermediário" },
-      ],
-      experienceTitle: "Experiência",
-      experienceRole:
-        "Desenvolvedor Full Stack · Agência de Desenvolvimento Web",
-      experiencePeriod: "2015 – 2018",
-      experienceHighlights: [
+      focusTitle: "No que me especializo",
+      focusAreas: [
         {
-          title: "55+ projetos para o setor de construção civil",
+          title: "Backend & APIs",
           description:
-            "Desenvolvi e mantive websites WordPress de alta performance, adaptando cada solução às necessidades específicas de cada cliente.",
+            "Criação de APIs RESTful, autenticação, modelagem de banco de dados e integrações com serviços externos usando Node.js e TypeScript.",
+          tags: ["Node.js", "TypeScript", "REST APIs", "PostgreSQL", "Prisma"],
         },
         {
-          title: "Plugins e temas WordPress customizados",
+          title: "Frontend & Interfaces",
           description:
-            "Construí funcionalidades sob medida em PHP, garantindo design responsivo e acessível em todos os projetos.",
+            "Interfaces modernas, responsivas e acessíveis com React e Next.js — com atenção a performance, SEO e experiência do usuário.",
+          tags: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
         },
         {
-          title: "SEO técnico com resultados mensuráveis",
+          title: "Integrações & Automações",
           description:
-            "Implementei melhorias de SEO técnico e on-page que resultaram em +30% de tráfego orgânico e +40% em conversão de leads.",
+            "Conexão de plataformas, webhooks, fluxos automatizados e integrações com APIs de terceiros para reduzir trabalho manual.",
+          tags: ["Webhooks", "APIs de terceiros", "Automação", "CI/CD"],
         },
-      ],
-      experienceTags: [
-        "WordPress",
-        "PHP",
-        "SEO",
-        "Design Responsivo",
-        "Otimização de Performance",
-        "UX/UI",
       ],
     },
     projects: {
@@ -107,7 +90,7 @@ export const translations: Record<"pt" | "en", Translation> = {
     about: {
       title: "About Me",
       description:
-        "I'm a Full Stack developer focused on Node.js, React, and TypeScript. I work across the full stack — from interface to API — with attention to performance, accessibility, and clean code. I have hands-on experience with production projects, including an educational platform I build end-to-end, and I thrive in environments where technical precision and pragmatism go hand in hand.",
+        "I'm a Full Stack developer focused on Node.js, React, and TypeScript. I build web applications from frontend to backend — from responsive, performant interfaces to robust APIs and third-party integrations. I enjoy projects with room to think through the solution before executing, working asynchronously with clear communication and predictable deliveries.",
       pillarsTitle: "How I work",
       pillars: [
         {
@@ -126,42 +109,26 @@ export const translations: Record<"pt" | "en", Translation> = {
             "I prefer clarity over jargon. I align expectations early and surface blockers without beating around the bush.",
         },
       ],
-      educationTitle: "Education & Languages",
-      educationDegree: "Systems Analysis and Development",
-      educationInstitution: "Universidade Positivo",
-      educationStatus: "In Progress",
-      languageTitle: "Languages",
-      languages: [
-        { name: "Portuguese", level: "Native" },
-        { name: "English", level: "Intermediate" },
-      ],
-      experienceTitle: "Experience",
-      experienceRole: "Full Stack Developer · Web Development Agency",
-      experiencePeriod: "2015 – 2018",
-      experienceHighlights: [
+      focusTitle: "What I specialize in",
+      focusAreas: [
         {
-          title: "55+ projects for the construction industry",
+          title: "Backend & APIs",
           description:
-            "Developed and maintained high-performance WordPress websites, tailoring each solution to the specific needs of each client.",
+            "Building RESTful APIs, authentication, database modeling, and third-party service integrations using Node.js and TypeScript.",
+          tags: ["Node.js", "TypeScript", "REST APIs", "PostgreSQL", "Prisma"],
         },
         {
-          title: "Custom WordPress plugins and themes",
+          title: "Frontend & UI",
           description:
-            "Built bespoke features in PHP, ensuring responsive and accessible design across all projects.",
+            "Modern, responsive, and accessible interfaces with React and Next.js — with attention to performance, SEO, and user experience.",
+          tags: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
         },
         {
-          title: "Technical SEO with measurable results",
+          title: "Integrations & Automation",
           description:
-            "Implemented technical and on-page SEO improvements resulting in +30% organic traffic and +40% lead conversion.",
+            "Connecting platforms, webhooks, automated workflows, and third-party API integrations to reduce manual work.",
+          tags: ["Webhooks", "Third-party APIs", "Automation", "CI/CD"],
         },
-      ],
-      experienceTags: [
-        "WordPress",
-        "PHP",
-        "SEO",
-        "Responsive Design",
-        "Performance Optimization",
-        "UX/UI",
       ],
     },
     projects: {

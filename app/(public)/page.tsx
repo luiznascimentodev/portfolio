@@ -7,14 +7,16 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luifelippe.dev";
 export const metadata: Metadata = {
   title: "Luiz Felippe — Desenvolvedor Full Stack",
   description:
-    "Portfolio de Luiz Felippe Nascimento, desenvolvedor Full Stack especializado em React, Next.js, TypeScript e Node.js.",
+    "Desenvolvedor Full Stack freelance especializado em Node.js, React, Next.js e TypeScript. Construo aplicações web completas: APIs robustas, interfaces modernas e integrações com serviços externos.",
   keywords: [
-    "desenvolvedor full stack",
-    "react developer",
+    "desenvolvedor full stack freelance",
+    "desenvolvedor node.js",
+    "desenvolvedor react",
     "next.js",
     "typescript",
-    "node.js",
-    "portfolio",
+    "desenvolvimento web sob demanda",
+    "api rest",
+    "postgresql",
   ],
   alternates: {
     canonical: BASE_URL,
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Luiz Felippe — Desenvolvedor Full Stack",
     description:
-      "Portfolio de Luiz Felippe Nascimento, desenvolvedor Full Stack especializado em React, Next.js e TypeScript.",
+      "Desenvolvedor Full Stack freelance especializado em Node.js, React, Next.js e TypeScript. Aplicações web completas, APIs robustas e integrações.",
     url: BASE_URL,
     images: [
       {
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Luiz Felippe — Desenvolvedor Full Stack",
     description:
-      "Portfolio de Luiz Felippe Nascimento, desenvolvedor Full Stack especializado em React, Next.js e TypeScript.",
+      "Desenvolvedor Full Stack freelance especializado em Node.js, React, Next.js e TypeScript. Aplicações web completas, APIs robustas e integrações.",
     images: [`/api/og`],
   },
 };

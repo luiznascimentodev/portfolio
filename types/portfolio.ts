@@ -20,23 +20,12 @@ export interface Translation {
       title: string;
       description: string;
     }>;
-    educationTitle: string;
-    educationDegree: string;
-    educationInstitution: string;
-    educationStatus: string;
-    languageTitle: string;
-    languages: Array<{
-      name: string;
-      level: string;
-    }>;
-    experienceTitle: string;
-    experienceRole: string;
-    experiencePeriod: string;
-    experienceHighlights: Array<{
+    focusTitle: string;
+    focusAreas: Array<{
       title: string;
       description: string;
+      tags: string[];
     }>;
-    experienceTags: string[];
   };
   projects: {
     title: string;

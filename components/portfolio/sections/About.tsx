@@ -46,18 +46,46 @@ export const About = () => {
         </div>
       </section>
 
-      {/* ── Formação e Idiomas ── */}
-      <section aria-labelledby="education-heading">
+      {/* ── No que me especializo ── */}
+      <section aria-labelledby="focus-heading">
         <h2
-          id="education-heading"
+          id="focus-heading"
           className="text-xl font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-3 mb-4"
         >
           <span className="w-1.5 h-6 bg-gradient-to-b from-primary to-primary/50 rounded-full" />
-          {t.about.educationTitle}
+          {t.about.focusTitle}
         </h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {t.about.focusAreas.map((area, index) => (
+            <div
+              key={index}
+              className="group relative p-5 rounded-2xl bg-gray-50/80 dark:bg-gray-900/60 border border-gray-200/50 dark:border-gray-800/50 hover:border-primary/30 dark:hover:border-primary/30 transition-all duration-300"
+            >
+              <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-primary/50 via-primary to-primary/50 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                {area.title}
+              </h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-3">
+                {area.description}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {area.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 text-xs font-medium bg-primary/10 dark:bg-primary/20 text-primary rounded-full border border-primary/20 dark:border-primary/30"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          {/* Formação Acadêmica */}
           <div className="group relative p-5 rounded-2xl bg-gray-50/80 dark:bg-gray-900/60 border border-gray-200/50 dark:border-gray-800/50 hover:border-primary/30 dark:hover:border-primary/30 transition-all duration-300">
             <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-primary/50 via-primary to-primary/50 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="flex items-start gap-3">

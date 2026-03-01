@@ -13,7 +13,7 @@ export function PersonJsonLd({
   name = "Luiz Felippe Nascimento",
   url = BASE_URL,
   image = `${BASE_URL}/avatar.webp`,
-  description = "Desenvolvedor Full Stack especializado em Node.js, React, Next.js e TypeScript. Experiência em desenvolvimento de aplicações web completas, com foco em performance, acessibilidade e código limpo.",
+  description = "Desenvolvedor Full Stack freelance especializado em Node.js, React, Next.js e TypeScript. Construo aplicações web do front ao back — APIs robustas, interfaces performáticas e integrações com serviços externos — com comunicação direta e entregas previsíveis.",
   jobTitle = "Desenvolvedor Full Stack",
   sameAs = [
     "https://github.com/luifelippe",
