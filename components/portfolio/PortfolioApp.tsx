@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { ReactElement } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Sidebar } from "@/components/portfolio/Sidebar";
 import { Card } from "@/components/portfolio/Card";
 import { About } from "@/components/portfolio/sections/About";
@@ -15,7 +15,14 @@ import type { Section } from "@/types/portfolio";
 export function PortfolioApp() {
   const [activeSection, setActiveSection] = useState<Section | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isBlogLoading, setIsBlogLoading] = useState(false);
   const { t } = useLanguage();
+  const router = useRouter();
+
+  const handleBlogClick = () => {
+    setIsBlogLoading(true);
+    router.push("/blog");
+  };
 
   const sections: Array<{ id: Section; icon: ReactElement }> = [
     {
@@ -179,18 +186,48 @@ export function PortfolioApp() {
             ))}
 
             {/* Blog card — navega para /blog */}
-            <Link
-              href="/blog"
-              className="group relative p-8 bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-800/50 hover:border-primary/40 dark:hover:border-primary/40 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 min-h-[220px] w-full overflow-hidden flex flex-col items-center justify-center text-center space-y-5"
+            <button
+              onClick={handleBlogClick}
+              disabled={isBlogLoading}
+              className="group relative p-8 bg-gray-50/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-800/50 hover:border-primary/40 dark:hover:border-primary/40 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 min-h-[220px] w-full overflow-hidden flex flex-col items-center justify-center text-center space-y-5 disabled:cursor-wait"
               aria-label="Ir para o Blog"
             >
               {/* gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
+              {/* loading overlay */}
+              {isBlogLoading && (
+                <div className="absolute inset-0 bg-white/60 dark:bg-black/60 backdrop-blur-sm rounded-2xl flex items-center justify-center z-10">
+                  <svg
+                    className="w-8 h-8 text-primary animate-spin"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                    />
+                  </svg>
+                </div>
+              )}
+
               <div className="relative flex flex-col items-center justify-center text-center space-y-5 h-full">
                 <div className="relative">
                   <div className="absolute inset-0 blur-2xl bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative w-16 h-16 text-gray-600 dark:text-gray-400 group-hover:text-primary group-hover:scale-110 transition-all duration-500">
+                  <div
+                    className={`relative w-16 h-16 text-gray-600 dark:text-gray-400 group-hover:text-primary transition-all duration-500 ${
+                      isBlogLoading ? "opacity-30" : "group-hover:scale-110"
+                    }`}
+                  >
                     <svg
                       className="w-full h-full"
                       fill="none"
@@ -207,14 +244,20 @@ export function PortfolioApp() {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-500 tracking-wide">
+                <h3
+                  className={`text-xl font-semibold transition-colors duration-500 tracking-wide ${
+                    isBlogLoading
+                      ? "text-primary"
+                      : "text-gray-700 dark:text-gray-300 group-hover:text-primary"
+                  }`}
+                >
                   {t.nav.blog}
                 </h3>
               </div>
 
               {/* accent line */}
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/60 transition-all duration-500" />
-            </Link>
+            </button>
           </div>
 
           {/* Conteúdo da seção selecionada */}

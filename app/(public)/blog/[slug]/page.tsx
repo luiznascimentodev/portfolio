@@ -253,7 +253,12 @@ export default async function PostPage({ params }: PostPageProps) {
 
         {/* Share */}
         <div className="mb-12">
-          <ShareButtons title={post.title} slug={post.slug} />
+          <ShareButtons
+            title={post.title}
+            slug={post.slug}
+            excerpt={post.excerpt}
+            tags={post.tags}
+          />
         </div>
 
         {/* Prev / Next navigation */}
