@@ -2,14 +2,13 @@ export type Theme = "light" | "dark";
 
 export type Language = "pt" | "en";
 
-export type Section = "about" | "projects" | "contact" | "skills";
+export type Section = "about" | "projects" | "contact";
 
 export interface Translation {
   nav: {
     about: string;
     projects: string;
     contact: string;
-    skills: string;
     blog: string;
   };
   about: {
@@ -37,10 +36,6 @@ export interface Translation {
     email: string;
     phone: string;
     location: string;
-  };
-  skills: {
-    title: string;
-    description: string;
   };
   theme: {
     light: string;

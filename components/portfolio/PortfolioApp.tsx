@@ -8,7 +8,6 @@ import { Card } from "@/components/portfolio/Card";
 import { About } from "@/components/portfolio/sections/About";
 import { Projects } from "@/components/portfolio/sections/Projects";
 import { Contact } from "@/components/portfolio/sections/Contact";
-import { Skills } from "@/components/portfolio/sections/Skills";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Section } from "@/types/portfolio";
 
@@ -79,24 +78,6 @@ export function PortfolioApp() {
         </svg>
       ),
     },
-    {
-      id: "skills",
-      icon: (
-        <svg
-          className="w-full h-full"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M13 10V3L4 14h7v7l9-11h-7z"
-          />
-        </svg>
-      ),
-    },
   ];
 
   const renderSectionContent = () => {
@@ -107,8 +88,6 @@ export function PortfolioApp() {
         return <Projects />;
       case "contact":
         return <Contact />;
-      case "skills":
-        return <Skills />;
       default:
         return null;
     }
@@ -171,7 +150,7 @@ export function PortfolioApp() {
         <div className="w-full max-w-7xl space-y-8 lg:space-y-12 px-4 sm:px-6 lg:px-8 pb-8">
           {/* Cards horizontais */}
           <div
-            className={`grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 ${
+            className={`grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 ${
               !activeSection ? "" : "mt-16 lg:mt-0"
             }`}
           >

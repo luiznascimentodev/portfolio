@@ -6,13 +6,12 @@ export const translations: Record<"pt" | "en", Translation> = {
       about: "Sobre",
       projects: "Projetos",
       contact: "Contato",
-      skills: "Habilidades",
       blog: "Blog",
     },
     about: {
       title: "Sobre Mim",
       description:
-        "Sou desenvolvedor Full Stack com foco em Node.js, React e TypeScript. Construo aplicações web do front ao back — de interfaces responsivas e performáticas até APIs robustas e integrações com serviços externos. Gosto de projetos onde há espaço para pensar bem a solução antes de executar, e trabalho de forma assíncrona com comunicação direta e entregas previsíveis.",
+        "Sou desenvolvedor Full Stack com foco em Node.js, React, TypeScript e PHP/Laravel. Construo aplicações web do front ao back — de interfaces responsivas e performáticas até APIs robustas e integrações com serviços externos. Gosto de projetos onde há espaço para pensar bem a solução antes de executar, e trabalho de forma assíncrona com comunicação direta e entregas previsíveis.",
       pillarsTitle: "Como trabalho",
       pillars: [
         {
@@ -36,8 +35,16 @@ export const translations: Record<"pt" | "en", Translation> = {
         {
           title: "Backend & APIs",
           description:
-            "Criação de APIs RESTful, autenticação, modelagem de banco de dados e integrações com serviços externos usando Node.js e TypeScript.",
-          tags: ["Node.js", "TypeScript", "REST APIs", "PostgreSQL", "Prisma"],
+            "Criação de APIs RESTful, autenticação, modelagem de banco de dados e integrações com serviços externos usando Node.js, TypeScript e PHP/Laravel.",
+          tags: [
+            "Node.js",
+            "TypeScript",
+            "PHP",
+            "Laravel",
+            "REST APIs",
+            "PostgreSQL",
+            "Prisma",
+          ],
         },
         {
           title: "Frontend & Interfaces",
@@ -66,10 +73,6 @@ export const translations: Record<"pt" | "en", Translation> = {
       phone: "Telefone",
       location: "Localização",
     },
-    skills: {
-      title: "Habilidades",
-      description: "Tecnologias e ferramentas que domino.",
-    },
     theme: {
       light: "Modo Claro",
       dark: "Modo Escuro",
@@ -84,13 +87,12 @@ export const translations: Record<"pt" | "en", Translation> = {
       about: "About",
       projects: "Projects",
       contact: "Contact",
-      skills: "Skills",
       blog: "Blog",
     },
     about: {
       title: "About Me",
       description:
-        "I'm a Full Stack developer focused on Node.js, React, and TypeScript. I build web applications from frontend to backend — from responsive, performant interfaces to robust APIs and third-party integrations. I enjoy projects with room to think through the solution before executing, working asynchronously with clear communication and predictable deliveries.",
+        "I'm a Full Stack developer focused on Node.js, React, TypeScript, and PHP/Laravel. I build web applications from frontend to backend — from responsive, performant interfaces to robust APIs and third-party integrations. I enjoy projects with room to think through the solution before executing, working asynchronously with clear communication and predictable deliveries.",
       pillarsTitle: "How I work",
       pillars: [
         {
@@ -114,8 +116,16 @@ export const translations: Record<"pt" | "en", Translation> = {
         {
           title: "Backend & APIs",
           description:
-            "Building RESTful APIs, authentication, database modeling, and third-party service integrations using Node.js and TypeScript.",
-          tags: ["Node.js", "TypeScript", "REST APIs", "PostgreSQL", "Prisma"],
+            "Building RESTful APIs, authentication, database modeling, and third-party service integrations using Node.js, TypeScript, and PHP/Laravel.",
+          tags: [
+            "Node.js",
+            "TypeScript",
+            "PHP",
+            "Laravel",
+            "REST APIs",
+            "PostgreSQL",
+            "Prisma",
+          ],
         },
         {
           title: "Frontend & UI",
@@ -141,10 +151,6 @@ export const translations: Record<"pt" | "en", Translation> = {
       email: "Email",
       phone: "Phone",
       location: "Location",
-    },
-    skills: {
-      title: "Skills",
-      description: "Technologies and tools I master.",
     },
     theme: {
       light: "Light Mode",
