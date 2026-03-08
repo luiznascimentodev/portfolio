@@ -30,6 +30,10 @@ export interface Translation {
     title: string;
     description: string;
   };
+  skills: {
+    title: string;
+    description: string;
+  };
   contact: {
     title: string;
     description: string;

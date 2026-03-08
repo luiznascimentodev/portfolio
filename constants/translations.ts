@@ -65,6 +65,11 @@ export const translations: Record<"pt" | "en", Translation> = {
       description:
         "Confira alguns dos meus trabalhos recentes e projetos pessoais.",
     },
+    skills: {
+      title: "Habilidades",
+      description:
+        "Tecnologias e ferramentas com as quais trabalho no dia a dia.",
+    },
     contact: {
       title: "Contato",
       description:
@@ -144,6 +149,11 @@ export const translations: Record<"pt" | "en", Translation> = {
     projects: {
       title: "Projects",
       description: "Check out some of my recent work and personal projects.",
+    },
+    skills: {
+      title: "Skills",
+      description:
+        "Technologies and tools I work with on a daily basis.",
     },
     contact: {
       title: "Contact",
