@@ -59,31 +59,28 @@ export const Projects = () => {
       repo: string,
     ): Promise<string | null> => {
       const previewPaths = [
-        "main.png",
         "public/main.png",
+        "main.png",
+        "public/preview.png",
+        "preview.png",
         "screenshots/main.png",
         "screenshots/preview.png",
-        "preview.png",
-        "public/preview.png",
         "screenshot.png",
         "docs/preview.png",
         "assets/preview.png",
         ".github/preview.png",
       ];
-      const branches = ["main", "master"];
-      for (const branch of branches) {
-        for (const path of previewPaths) {
-          try {
-            const response = await fetch(
-              `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`,
-              { method: "HEAD" },
-            );
-            if (response.ok) {
-              return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
-            }
-          } catch {
-            // Tentar próximo caminho
+      for (const path of previewPaths) {
+        try {
+          const response = await fetch(
+            `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+          );
+          if (response.ok) {
+            const data = await response.json();
+            if (data.download_url) return data.download_url;
           }
+        } catch {
+          // Tentar próximo caminho
         }
       }
       return null;
