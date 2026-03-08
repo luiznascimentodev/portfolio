@@ -70,17 +70,20 @@ export const Projects = () => {
         "assets/preview.png",
         ".github/preview.png",
       ];
-      for (const path of previewPaths) {
-        try {
-          const response = await fetch(
-            `https://raw.githubusercontent.com/${owner}/${repo}/main/${path}`,
-            { method: "HEAD" },
-          );
-          if (response.ok) {
-            return `https://raw.githubusercontent.com/${owner}/${repo}/main/${path}`;
+      const branches = ["main", "master"];
+      for (const branch of branches) {
+        for (const path of previewPaths) {
+          try {
+            const response = await fetch(
+              `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`,
+              { method: "HEAD" },
+            );
+            if (response.ok) {
+              return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+            }
+          } catch {
+            // Tentar próximo caminho
           }
-        } catch {
-          // Tentar próximo caminho
         }
       }
       return null;
