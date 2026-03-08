@@ -60,9 +60,11 @@ export const Projects = () => {
     ): Promise<string | null> => {
       const previewPaths = [
         "main.png",
+        "public/main.png",
         "screenshots/main.png",
         "screenshots/preview.png",
         "preview.png",
+        "public/preview.png",
         "screenshot.png",
         "docs/preview.png",
         "assets/preview.png",
