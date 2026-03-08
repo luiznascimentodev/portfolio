@@ -152,8 +152,7 @@ export const translations: Record<"pt" | "en", Translation> = {
     },
     skills: {
       title: "Skills",
-      description:
-        "Technologies and tools I work with on a daily basis.",
+      description: "Technologies and tools I work with on a daily basis.",
     },
     contact: {
       title: "Contact",
